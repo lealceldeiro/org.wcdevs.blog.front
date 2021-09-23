@@ -1,2 +1,3 @@
 # org.wcdevs.blog.front
-Holds the `org.wcdevs.blog.front` application
+
+Holds `org.wcdevs.blog.front`, the front-end application for [blog.wcdevs.org](https://blog.wcdevs.org)
