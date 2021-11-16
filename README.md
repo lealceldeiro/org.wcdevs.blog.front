@@ -1,5 +1,7 @@
 # org.wcdevs.blog.front
 
+[![FE Application Deployment](https://github.com/lealceldeiro/org.wcdevs.blog.awsdeployer/actions/workflows/fe-app-deployment.yml/badge.svg)](https://github.com/lealceldeiro/org.wcdevs.blog.awsdeployer/actions/workflows/fe-app-deployment.yml)
+
 Holds `org.wcdevs.blog.front`, the front-end application for [blog.wcdevs.org](https://blog.wcdevs.org)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
