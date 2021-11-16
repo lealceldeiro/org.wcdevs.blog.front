@@ -1,0 +1,86 @@
+name: Build and Publish
+
+on:
+  push:
+    paths:
+      - 'package.json'
+      - 'Dockerfile'
+      - 'src/**'
+      - 'public/**'
+      - '.github/workflows/build-and-publish.yml'
+  pull_request:
+    paths:
+      - 'package.json'
+      - 'Dockerfile'
+      - 'src/**'
+      - 'public/**'
+      - '.github/workflows/build-and-publish.yml'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [ 12.x ]
+        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+
+      - name: Install dependencies with a clean slate
+        run: npm ci
+
+      - name: Run test
+        run: npm test
+
+      - name: Create Docker image tag
+        if: github.ref == 'refs/heads/main'
+        id: dockerImageTag
+        run: echo "::set-output name=tag::$(date +'%Y%m%d%H%M%S')-${GITHUB_SHA}"
+
+      - name: Publish Docker image to ECR registry
+        if: github.ref == 'refs/heads/main'
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_ACCOUNT_ID: ${{ secrets.AWS_ACCOUNT_ID }}
+          AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
+          DOCKER_IMAGE_TAG: ${{ steps.dockerImageTag.outputs.tag }}
+          ECR_REPO_NAME: ${{ secrets.ECR_REPO_NAME }}
+        run: |
+          echo OS Information:
+          lsb_release -sidrc
+          echo Docker Information:
+          docker -v
+          docker build -t orgwcdevsblogfront .
+          echo Images:
+          docker image ls
+          echo "AWS CLI Info: $(aws --version)"
+          aws ecr get-login-password --region ${AWS_DEFAULT_REGION} | docker login -u AWS --password-stdin ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com
+          docker tag orgwcdevsblogfront ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${ECR_REPO_NAME}:${DOCKER_IMAGE_TAG}
+          docker push ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${ECR_REPO_NAME}:${DOCKER_IMAGE_TAG}
+
+      - name: Send Deployment event to queue
+        if: github.ref == 'refs/heads/main'
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_ACCOUNT_ID: ${{ secrets.AWS_ACCOUNT_ID }}
+          AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
+          DOCKER_IMAGE_TAG: ${{ steps.dockerImageTag.outputs.tag }}
+          # see https://github.com/lealceldeiro/org.wcdevs.blog.awsdeployer/blob/main/deployment-sequencer-lambda/src/index.ts#L65
+        run: |
+          export EVENT_PAYLOAD="{\"commitSha\": \"$GITHUB_SHA\", \"ref\": \"main\", \"owner\": \"lealceldeiro\", \"repo\": \"org.wcdevs.blog.awsdeployer\", \"workflowId\": \"fe-app-deployment.yml\", \"environmentName\": \"staging\", \"applicationName\": \"front\", \"dockerImageTag\": \"$DOCKER_IMAGE_TAG\"}"
+          aws sqs send-message \
+            --queue-url=https://sqs.${AWS_DEFAULT_REGION}.amazonaws.com/${AWS_ACCOUNT_ID}/orgwcdevsblog-deploymentsQueue.fifo \
+            --message-group-id default \
+            --message-deduplication-id $GITHUB_SHA \
+            --message-body "$EVENT_PAYLOAD"
