@@ -1,25 +1,43 @@
-import logo from './logo.svg';
+import axios from 'axios';
 import './App.css';
+import React from 'react';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class Form extends React.Component {
+  state = { posts: [] };
+  handleSubmit = async (e) => {
+    e.preventDefault();
+    const response = await axios.get(`http://localhost:8080/post/`);
+
+    this.props.onSubmit(response.data);
+  }
+
+  render() {
+    return (
+        <form onSubmit={this.handleSubmit}>
+          <button>Fetch posts</button>
+        </form>
+    );
+  }
+}
+
+class App extends React.Component {
+  state = { posts: [] };
+
+  setPosts = (posts) => {
+    this.setState(previous => ({
+      posts: posts
+    }))
+  }
+  render() {
+    return (
+        <div>
+          <Form onSubmit={this.setPosts}/>
+          <div>
+            {JSON.stringify(this.state.posts)}
+          </div>
+        </div>
+    )
+  }
 }
 
 export default App;
