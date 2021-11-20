@@ -1,0 +1,21 @@
+<!DOCTYPE>
+<html xml:lang="en">
+
+<head>
+<title>Processing login</title>
+</head>
+
+<body>
+<noscript>Javascript is needed</noscript>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/oidc-client/1.11.5/oidc-client.js"></script>
+<script>
+  new Oidc.UserManager().signinRedirectCallback()
+      .then((user) => {
+        sessionStorage.setItem("access_token", user.access_token);
+        window.location = "/"
+      })
+      .catch(err => console.log(err));
+</script>
+</body>
+
+</html>

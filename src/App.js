@@ -1,25 +1,83 @@
-import logo from './logo.svg';
+import axios from 'axios';
+import { UserManager } from "oidc-client";
 import './App.css';
+import React from 'react';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class AuthService {
+  static instance = null;
+  userManager = new UserManager({
+    authority: "https://staging-wcdevs.auth.eu-west-3.amazoncognito.com/",
+    client_id: "3qattdrmur3518vrm7pf75bhu7",
+    redirect_uri: "https://wcdevs.org/login-callback.html",
+    response_type: "id_token token",
+    scope: "openid profile email"
+  });
+
+  constructor (){
+    this.login = this.login.bind(this);
+    this.getUser = this.getUser.bind(this);
+  }
+
+  static getInstance() {
+    if (this.instance == null) {
+      this.instance = new AuthService();
+    }
+    return this.instance;
+  }
+
+  login() {
+    return this.userManager.signinRedirect()
+  }
+
+  getUser() {
+    return this.userManager.getUser();
+  }
+}
+
+class Form extends React.Component {
+  handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const response = await axios.get(`https://api.wcdevs.org/post/`, {
+      headers: {
+        "Authorization": "Bearer " + sessionStorage.getItem("access_token")
+      }
+    });
+
+    this.props.onSubmit(response.data);
+  }
+
+  render() {
+    return (
+        <form onSubmit={ this.handleSubmit }>
+          <button>Fetch posts</button>
+        </form>
+    );
+  }
+}
+
+class App extends React.Component {
+  state = { posts: [] };
+  auth = AuthService.getInstance();
+
+  setPosts = (posts) => {
+    this.setState(previous => ({
+      posts: posts
+    }))
+  }
+
+  render() {
+    return (
+        <div>
+          <Form onSubmit={ this.setPosts }/>
+          <div>
+            { JSON.stringify(this.state.posts) }
+          </div>
+          <hr/>
+          <button onClick={ this.auth.login }>Login</button>
+        </div>
+    )
+  }
 }
 
 export default App;
