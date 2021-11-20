@@ -2,7 +2,7 @@
 <html xml:lang="en">
 
 <head>
-<title>Processing login</title>
+  <title>Processing login</title>
 </head>
 
 <body>
@@ -11,10 +11,14 @@
 <script>
   new Oidc.UserManager().signinRedirectCallback()
       .then((user) => {
+        debugger;
         sessionStorage.setItem("access_token", user.access_token);
         window.location = "/"
       })
-      .catch(err => console.log(err));
+      .catch(err => {
+        debugger
+        console.log(err);
+      });
 </script>
 </body>
 
