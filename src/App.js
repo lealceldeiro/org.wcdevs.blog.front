@@ -6,7 +6,7 @@ import React from 'react';
 class AuthService {
   static instance = null;
   userManager = new UserManager({
-    authority: "https://staging-wcdevs.auth.eu-west-3.amazoncognito.com/",
+    authority: "https://cognito-idp.eu-west-3.amazonaws.com/",
     client_id: "3qattdrmur3518vrm7pf75bhu7",
     redirect_uri: "https://wcdevs.org/login-callback.html",
     response_type: "id_token token",
