@@ -6,9 +6,9 @@ import React from 'react';
 class AuthService {
   static instance = null;
   userManager = new UserManager({
-    authority: "http://localhost:8888/auth/realms/wcdevs",
-    client_id: "wcdevs-front-client",
-    redirect_uri: "http://localhost:3000/login-callback.html",
+    authority: "https://staging-wcdevs.auth.eu-west-3.amazoncognito.com/",
+    client_id: "3qattdrmur3518vrm7pf75bhu7",
+    redirect_uri: "https://wcdevs.org/login-callback.html",
     response_type: "id_token token",
     scope: "openid profile email"
   });
@@ -38,7 +38,7 @@ class Form extends React.Component {
   handleSubmit = async (e) => {
     e.preventDefault();
 
-    const response = await axios.get(`http://localhost:8080/post/`, {
+    const response = await axios.get(`https://api.wcdevs.org/post/`, {
       headers: {
         "Authorization": "Bearer " + sessionStorage.getItem("access_token")
       }
