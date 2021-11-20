@@ -12,7 +12,7 @@ class AuthService {
     authority: "https://cognito-idp.eu-west-3.amazonaws.com/eu-west-3_CwGqpTcvR/",
     client_id: "1ulc81ps52d6mde5kae3mllv68",
     redirect_uri: "https://wcdevs.org/login-callback.html",
-    response_type: "token",
+    response_type: "id_token token",
     scope: "openid profile email"
   });
 
