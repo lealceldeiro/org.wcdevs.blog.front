@@ -14,7 +14,7 @@ class AuthService {
     redirect_uri: "https://wcdevs.org/login-callback.html",
     // see https://aws.amazon.com/blogs/mobile/understanding-amazon-cognito-user-pool-oauth-2-0-grants/ to check what value should go here
     response_type: "token",
-    scope: "openid profile email"
+    scope: "profile email"
   });
 
   constructor (){
