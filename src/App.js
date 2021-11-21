@@ -9,8 +9,8 @@ class AuthService {
   // https://cognito-idp.<region>.amazonaws.com/<user_pool_id>/.well-known/openid-configuration contains a very useful info
   // authority for cognito: https://cognito-idp.<region>.amazonaws.com/<user_pool_id>/
   userManager = new UserManager({
-    authority: "https://cognito-idp.eu-west-3.amazonaws.com/eu-west-3_CwGqpTcvR/",
-    client_id: "1ulc81ps52d6mde5kae3mllv68",
+    authority: "https://cognito-idp.eu-west-3.amazonaws.com/eu-west-3_WBLynv5ch/",
+    client_id: "3jtrouenu5qkh6euo6a81c54bd",
     redirect_uri: "https://wcdevs.org/login-callback.html",
     response_type: "id_token token",
     scope: "openid profile email"

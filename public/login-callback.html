@@ -11,9 +11,10 @@
 <script>
   new Oidc.UserManager().signinRedirectCallback()
       .then((user) => {
+        // https://docs.aws.amazon.com/cognito/latest/developerguide/amazon-cognito-user-pools-using-the-id-token.html
         debugger;
-        sessionStorage.setItem("access_token", user.access_token);
-        window.location = "/"
+        // sessionStorage.setItem("access_token", user.access_token);
+        // window.location = "/"
       })
       .catch(err => {
         debugger
