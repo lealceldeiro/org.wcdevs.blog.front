@@ -12,6 +12,7 @@ class AuthService {
     authority: "https://cognito-idp.eu-west-3.amazonaws.com/eu-west-3_WBLynv5ch/",
     client_id: "3jtrouenu5qkh6euo6a81c54bd",
     redirect_uri: "https://wcdevs.org/login-callback.html",
+    // see https://aws.amazon.com/blogs/mobile/understanding-amazon-cognito-user-pool-oauth-2-0-grants/ to check what value should go here
     response_type: "token",
     scope: "openid profile email"
   });
