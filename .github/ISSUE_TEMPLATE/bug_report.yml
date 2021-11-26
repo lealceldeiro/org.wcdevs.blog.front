@@ -1,0 +1,73 @@
+name: Bug Report
+description: File a bug report
+title: "[Bug] "
+labels: ["bug"]
+assignees:
+  - lealceldeiro
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to fill out this bug report!
+  - type: input
+    id: contact
+    attributes:
+      label: Contact Details
+      description: How can we get in touch with you if we need more info?
+      placeholder: (optional) ex. email@example.com
+    validations:
+      required: false
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: Also tell us, what did you expect to happen?
+      placeholder: Tell us what you see! What's the problem in our blog?
+    validations:
+      required: true
+  - type: dropdown
+    id: device-type
+    attributes:
+      label: Device
+      description: What device were you using to visit our blog when the issue happened?
+      options:
+        - Desktop (PC, Laptop, etc.)
+        - Mobile (Android)
+        - Mobile (iOS)
+        - Other
+    validations:
+      required: true
+  - type: dropdown
+    id: browser-type
+    attributes:
+      label: Browser
+      description: What browser were you using to visit our blog when the issue happened? (You could [search how to know that](https://duckduckgo.com/?q=how+to+know+what+browser+i'm+using) or visit [https://www.whatsmybrowser.org/](https://www.whatsmybrowser.org/) - use `Ctrl`+ *click* to open a new tab)
+      options:
+        - Google Chrome
+        - Mozilla Firefox
+        - Microsoft Edge
+        - Vivaldi
+        - Safari
+        - Opera
+        - Maxthon
+        - Avast Secure
+        - Avant
+        - Other
+    validations:
+      required: true
+  - type: input
+    id: browser-version
+    attributes:
+      label: Browser version
+      description: Version of the browser were you using to visit our blog when the issue happened? (Again, you could [search how to know that](https://duckduckgo.com/?q=how+to+know+my+browser+version) or visit [https://www.whatsmybrowser.org/](https://www.whatsmybrowser.org/) - use `Ctrl`+ *click* to open a new tab)
+      placeholder: ex. 94.0 (64-bit)
+    validations:
+      required: false
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Code of Conduct
+      description: By submitting this issue, you agree to follow our [Code of Conduct](https://github.com/lealceldeiro/org.wcdevs.blog.front/blob/main/CODE_OF_CONDUCT.md)
+      options:
+        - label: I agree to follow this project's Code of Conduct
+          required: true
