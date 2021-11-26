@@ -8,7 +8,7 @@ body:
   - type: markdown
     attributes:
       value: |
-        Thanks for taking the time to help us improve our site! This template is more commonly used by the developer teams to create new tasks. If you intent to request a new feature, please use [this form](https://github.com/lealceldeiro/org.wcdevs.blog.front/issues/new?assignees=YuryDG&labels=feature&template=feature_request.yml&title=%5BFeature+Request%5D+)
+        Thanks for taking the time to help us improve our site! This template is more commonly used by the developers team to create new tasks. If you intent to request a new feature, please use [this form](https://github.com/lealceldeiro/org.wcdevs.blog.front/issues/new?assignees=YuryDG&labels=feature&template=feature_request.yml&title=%5BFeature+Request%5D+)
   - type: input
     id: contact
     attributes:
