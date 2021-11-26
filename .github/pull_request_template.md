@@ -5,7 +5,7 @@
 - [ ] Breaking change (fix or feature that would cause existing functionality to change)
 
 ## And
-- [ ] This Pull Request DOES NOT target the `main` branch on this repository (if so it must point to develop).
+- [ ] This Pull Request DOES NOT target the `main` branch on this repository (if so it must point to `develop`).
 - [ ] I have read the [**CONTRIBUTING**](https://github.com/lealceldeiro/org.wcdevs.blog.front/blob/main/CONTRIBUTING.md) document.
 - [ ] My code follows the code style of this project.
 - [ ] I have added/updated tests to cover my changes.
