@@ -13,6 +13,7 @@ and feel free to propose changes to this document in a pull request.
 
 * [Reporting Bugs](#reporting-bugs)
 * [Suggesting Enhancements](#suggesting-enhancements)
+* [Pull Requests](#pull-requests)
 
 ## Code of Conduct
 
@@ -85,3 +86,21 @@ which the suggestion is related to. You can use [this tool](https://www.cockos.c
 and Windows, and [this tool](https://github.com/colinkeenan/silentcast) on Linux.
 * **Explain why this enhancement would be useful**.
 * **Specify the name and version of the OS/browser you are using to visit our site
+
+### Pull Requests
+
+The process described here aims to:
+
+* Maintain the project code quality.
+* Fix problems that are important to users.
+
+Please follow these steps to have your contribution considered by the maintainers:
+
+1. Follow all instructions in [the template](https://github.com/lealceldeiro/org.wcdevs.blog.front/blob/main/.github/pull_request_template.md).
+2. After you submit your pull request, verify that all
+[status checks](https://help.github.com/articles/about-status-checks/) are passing. <details><summary>What if the
+status checks are failing?</summary>If a status check is failing, and you believe that the failure is not related to
+your change, please leave a comment on the pull request explaining why you believe the failure is unrelated.</details>
+
+While the prerequisites above must be satisfied prior to having your pull request reviewed, the reviewer(s) may ask
+you to complete additional design work, tests, or other changes before your pull request can be ultimately accepted.
