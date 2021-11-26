@@ -1,0 +1,35 @@
+name: Technical Request
+description: Request a new technical change
+title: "[Technical Request] "
+labels: ["enhancement"]
+assignees:
+  - YuryDG
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to help us improve our site! This template is more commonly used by the developer teams to create new tasks. If you intent to request a new feature, please use [this form](https://github.com/lealceldeiro/org.wcdevs.blog.front/issues/new?assignees=YuryDG&labels=feature&template=feature_request.yml&title=%5BFeature+Request%5D+)
+  - type: input
+    id: contact
+    attributes:
+      label: Contact Details
+      description: How can we get in touch with you if we need more info?
+      placeholder: (optional) ex. email@example.com
+    validations:
+      required: false
+  - type: textarea
+    id: what-tech-change-is-needed
+    attributes:
+      label: What technical change you'd like to see implemented in our project?
+      description: Describe as much as possible the new technical change.
+      placeholder: Tell us what you think should be changed from a technical perspective
+    validations:
+      required: true
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Code of Conduct
+      description: By submitting this issue, you agree to follow our [Code of Conduct](https://github.com/lealceldeiro/org.wcdevs.blog.front/blob/main/CODE_OF_CONDUCT.md)
+      options:
+        - label: I agree to follow this project's Code of Conduct
+          required: true
