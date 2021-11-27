@@ -42,7 +42,7 @@ class Form extends React.Component {
   handleFetch = async (e) => {
     e.preventDefault();
 
-    const response = await axios.get(`http://localhost:8080/post/`);
+    const response = await axios.get(`https://api.wcdevs.org/post/`);
 
     this.props.onSubmit(response.data);
   }
@@ -60,7 +60,7 @@ class FormNew extends React.Component {
   handlePost = async (e) => {
     e.preventDefault();
 
-    await axios.post(`http://localhost:8080/post/`,
+    await axios.post(`https://api.wcdevs.org/post/`,
         {
           title:  'a title ' + new Date().toString(),
           body: 'some body ' + new Date().toString()
