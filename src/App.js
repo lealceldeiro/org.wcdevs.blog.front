@@ -9,15 +9,15 @@ class AuthService {
   // https://cognito-idp.<region>.amazonaws.com/<user_pool_id>/.well-known/openid-configuration/ contains a very useful info
   // authority for cognito: https://cognito-idp.<region>.amazonaws.com/<user_pool_id>/
   userManager = new UserManager({
-    authority: "https://cognito-idp.eu-west-3.amazonaws.com/eu-west-3_DX5AKb0Qv/",
-    client_id: "5eov8e0l0hufuokhtk4cpqh3vp",
+    authority: "https://cognito-idp.eu-west-3.amazonaws.com/eu-west-3_ZTF0x8UAZ/",
+    client_id: "10srumvo7bc46mvn7iu2c4rled",
     redirect_uri: "https://wcdevs.org/login-callback.html",
     // see https://aws.amazon.com/blogs/mobile/understanding-amazon-cognito-user-pool-oauth-2-0-grants/ to check what value should go here
     response_type: "token",
     scope: "profile email"
   });
 
-  constructor (){
+  constructor() {
     this.login = this.login.bind(this);
     this.getUser = this.getUser.bind(this);
   }
@@ -39,22 +39,43 @@ class AuthService {
 }
 
 class Form extends React.Component {
-  handleSubmit = async (e) => {
+  handleFetch = async (e) => {
     e.preventDefault();
 
-    const response = await axios.get(`https://api.wcdevs.org/post/`, {
-      headers: {
-        "Authorization": "Bearer " + sessionStorage.getItem("access_token")
-      }
-    });
+    const response = await axios.get(`http://localhost:8080/post/`);
 
     this.props.onSubmit(response.data);
   }
 
   render() {
     return (
-        <form onSubmit={ this.handleSubmit }>
+        <form onSubmit={ this.handleFetch }>
           <button>Fetch posts</button>
+        </form>
+    );
+  }
+}
+
+class FormNew extends React.Component {
+  handlePost = async (e) => {
+    e.preventDefault();
+
+    await axios.post(`http://localhost:8080/post/`,
+        {
+          title:  'a title ' + new Date().toString(),
+          body: 'some body ' + new Date().toString()
+        },
+        {
+          headers: {
+            "Authorization": "Bearer " + sessionStorage.getItem("access_token")
+          }
+        });
+  }
+
+  render() {
+    return (
+        <form onSubmit={ this.handlePost }>
+          <button>Create posts</button>
         </form>
     );
   }
@@ -73,11 +94,18 @@ class App extends React.Component {
   render() {
     return (
         <div>
+
           <Form onSubmit={ this.setPosts }/>
           <div>
             { JSON.stringify(this.state.posts) }
           </div>
+
           <hr/>
+
+          <FormNew/>
+
+          <hr/>
+
           <button onClick={ this.auth.login }>Login</button>
         </div>
     )
