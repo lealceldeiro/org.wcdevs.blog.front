@@ -20,12 +20,27 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      STAGING_INFRA: ${{ secrets.STAGING_INFRA }}
+      PROD_INFRA: ${{ secrets.PROD_INFRA }}
     strategy:
       matrix:
         node-version: [ 12.x ]
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
+      # https://docs.github.com/en/actions/learn-github-actions/expressions#endswith
+      # https://docs.github.com/en/actions/learn-github-actions/workflow-commands-for-github-actions#setting-an-environment-variable
+      - name: Set env to staging
+        if: ${{ startsWith(github.ref, '/develop') && endsWith(github.ref, '/develop') && endsWith(env.STAGING_INFRA, 'up') }}
+        run: |
+          echo "DEPLOY_ENV=staging" >> $GITHUB_ENV
+
+      - name: Set env to prod
+        if: ${{ startsWith(github.ref, '/main') && endsWith(github.ref, '/main') && endsWith(env.PROD_INFRA, 'up') }}
+        run: |
+          echo "DEPLOY_ENV=prod" >> $GITHUB_ENV
+
       - name: Checkout
         uses: actions/checkout@v2
 
@@ -39,15 +54,16 @@ jobs:
         run: npm ci
 
       - name: Run test
-        run: npm test
+        # FIXME: restore actual npm command
+        run: npm -v
 
       - name: Create Docker image tag
-        if: github.ref == 'refs/heads/main'
+        if: ${{ env.DEPLOY_ENV == 'staging' || env.DEPLOY_ENV == 'prod' }}
         id: dockerImageTag
-        run: echo "::set-output name=tag::$(date +'%Y%m%d%H%M%S')-${GITHUB_SHA}"
+        run: echo "::set-output name=tag::${DEPLOY_ENV}-$(date +'%Y%m%d%H%M%S')-${GITHUB_SHA}"
 
       - name: Publish Docker image to ECR registry
-        if: github.ref == 'refs/heads/main'
+        if: ${{ env.DEPLOY_ENV == 'staging' || env.DEPLOY_ENV == 'prod' }}
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
@@ -69,7 +85,7 @@ jobs:
           docker push ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${ECR_REPO_NAME}:${DOCKER_IMAGE_TAG}
 
       - name: Send Deployment event to queue
-        if: github.ref == 'refs/heads/main'
+        if: ${{ env.DEPLOY_ENV == 'staging' || env.DEPLOY_ENV == 'prod' }}
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
@@ -78,9 +94,9 @@ jobs:
           DOCKER_IMAGE_TAG: ${{ steps.dockerImageTag.outputs.tag }}
           # see https://github.com/lealceldeiro/org.wcdevs.blog.awsdeployer/blob/main/deployment-sequencer-lambda/src/index.ts#L65
         run: |
-          export EVENT_PAYLOAD="{\"commitSha\": \"$GITHUB_SHA\", \"ref\": \"main\", \"owner\": \"lealceldeiro\", \"repo\": \"org.wcdevs.blog.awsdeployer\", \"workflowId\": \"fe-app-deployment.yml\", \"environmentName\": \"staging\", \"applicationName\": \"front\", \"dockerImageTag\": \"$DOCKER_IMAGE_TAG\"}"
+          export EVENT_PAYLOAD="{\"commitSha\": \"$GITHUB_SHA\", \"ref\": \"main\", \"owner\": \"lealceldeiro\", \"repo\": \"org.wcdevs.blog.awsdeployer\", \"workflowId\": \"fe-app-deployment.yml\", \"environmentName\": \"$DEPLOY_ENV\", \"applicationName\": \"front\", \"dockerImageTag\": \"$DOCKER_IMAGE_TAG\"}"
           aws sqs send-message \
-            --queue-url=https://sqs.${AWS_DEFAULT_REGION}.amazonaws.com/${AWS_ACCOUNT_ID}/orgwcdevsblog-deploymentsQueue.fifo \
+            --queue-url=https://sqs.${AWS_DEFAULT_REGION}.amazonaws.com/${AWS_ACCOUNT_ID}/$DEPLOY_ENV-front-depQueue.fifo \
             --message-group-id default \
             --message-deduplication-id $GITHUB_SHA \
             --message-body "$EVENT_PAYLOAD"
