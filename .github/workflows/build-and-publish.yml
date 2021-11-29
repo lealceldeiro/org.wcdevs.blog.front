@@ -20,6 +20,9 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      STAGING_INFRA: ${{ secrets.STAGING_INFRA }}
+      PROD_INFRA: ${{ secrets.PROD_INFRA }}
     strategy:
       matrix:
         node-version: [ 12.x ]
@@ -29,12 +32,12 @@ jobs:
       # https://docs.github.com/en/actions/learn-github-actions/expressions#endswith
       # https://docs.github.com/en/actions/learn-github-actions/workflow-commands-for-github-actions#setting-an-environment-variable
       - name: Set env to staging
-        if: endsWith(github.ref, '/develop')
+        if: ${{ startsWith(github.ref, '/develop') && endsWith(github.ref, '/develop') && endsWith(env.STAGING_INFRA, 'up') }}
         run: |
           echo "DEPLOY_ENV=staging" >> $GITHUB_ENV
 
       - name: Set env to prod
-        if: endsWith(github.ref, '/main')
+        if: ${{ startsWith(github.ref, '/main') && endsWith(github.ref, '/main') && endsWith(env.PROD_INFRA, 'up') }}
         run: |
           echo "DEPLOY_ENV=prod" >> $GITHUB_ENV
 
@@ -57,7 +60,7 @@ jobs:
       - name: Create Docker image tag
         if: ${{ env.DEPLOY_ENV == 'staging' || env.DEPLOY_ENV == 'prod' }}
         id: dockerImageTag
-        run: echo "::set-output name=tag::$(date +'%Y%m%d%H%M%S')-${GITHUB_SHA}"
+        run: echo "::set-output name=tag::${DEPLOY_ENV}-$(date +'%Y%m%d%H%M%S')-${GITHUB_SHA}"
 
       - name: Publish Docker image to ECR registry
         if: ${{ env.DEPLOY_ENV == 'staging' || env.DEPLOY_ENV == 'prod' }}
