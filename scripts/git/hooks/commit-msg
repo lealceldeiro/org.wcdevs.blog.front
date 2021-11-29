@@ -1,0 +1,16 @@
+#!/bin/sh
+#
+# Check the commit log message. Called by "git commit" with one argument, the name of the file that has the commit
+# message. The hook should exit with non-zero status after issuing an appropriate message if it wants to stop the
+# commit.  The hook is allowed to edit the commit message file.
+#
+# This example catches duplicate Signed-off-by lines.
+
+MSG="$1"
+
+if ! grep -qP '^(build|ci|chore|docs|feat|fix|perf|refactor|revert|style|test)(\((US-)?[0-9]++\))?\:.*' "$MSG";then
+  echo "Commit message does not follow our convention"
+  exit 1
+fi
+
+exit 0
