@@ -1,33 +1,594 @@
 import type { NextPage } from 'next';
-import styles from '../styles/Home.module.css';
+// import styles from '../styles/Home.module.css';
 
 const Home: NextPage = () => {
   return (
     <div className="">
-      <header className="px-5vw py-5">
-        <nav className='flex item-center justify-between'>
-          <div className='p-5'>          
-            <a href="http://google.com">MyBlog</a>
-          </div>
-          <ul className='flex item-center justify-center'>
-            <li className='p-5'>
-              <a href="/blog">Blog</a>
-            </li>
-            <li className='p-5'>
-              <a href="/contact">Contact</a>
-            </li>
-            <li className='p-5'>
-              <a href="/about">About</a>
-            </li>
-          </ul>
-          <div className='menu p-5'>
-            MM
-          </div>
-        </nav>
-      </header>
+      
+      {/* Navigation */}
+        <nav className="navbar fixed-top">
+            <div className="container sm:px-4 lg:px-8 flex flex-wrap items-center justify-between lg:flex-nowrap">
+                
+                {/* Text Logo - Use this if you don't have a graphic logo */}
+                {/* <a className="text-gray-800 font-semibold text-3xl leading-4 no-underline page-scroll" href="index.html">Pavo</a> */}
 
-      <footer><div className="max-w-6xl mx-auto px-4 sm:px-6">
-          <div className="grid sm:grid-cols-12 gap-8 py-8 md:py-12 border-t border-gray-200"><div className="sm:col-span-12 lg:col-span-3"><div className="mb-2"><a className="inline-block" aria-label="Cruip" href="/" style={{outline: 'none'}}><svg className="w-8 h-8" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient cx="21.152%" cy="86.063%" fx="21.152%" fy="86.063%" r="79.941%" id="footer-logo"><stop stopColor="#4FD1C5" offset="0%" /><stop stopColor="#81E6D9" offset="25.871%" /><stop stopColor="#338CF5" offset="100%" /></radialGradient></defs><rect width={32} height={32} rx={16} fill="url(#footer-logo)" fillRule="nonzero" /></svg></a></div><div className="text-sm text-gray-600"><a className="text-gray-600 hover:text-gray-900 hover:underline transition duration-150 ease-in-out" href="/" style={{outline: 'none'}}>Terms</a> · <a className="text-gray-600 hover:text-gray-900 hover:underline transition duration-150 ease-in-out" href="/" style={{outline: 'none'}}>Privacy Policy</a></div></div><div className="sm:col-span-6 md:col-span-3 lg:col-span-2"><h6 className="text-gray-800 font-medium mb-2">Products</h6><ul className="text-sm"><li className="mb-2"><a className="text-gray-600 hover:text-gray-900 transition duration-150 ease-in-out" href="/" style={{outline: 'none'}}>Web Studio</a></li><li className="mb-2"><a className="text-gray-600 hover:text-gray-900 transition duration-150 ease-in-out" href="/" style={{outline: 'none'}}>DynamicBox Flex</a></li><li className="mb-2"><a className="text-gray-600 hover:text-gray-900 transition duration-150 ease-in-out" href="/" style={{outline: 'none'}}>Programming Forms</a></li><li className="mb-2"><a className="text-gray-600 hover:text-gray-900 transition duration-150 ease-in-out" href="/" style={{outline: 'none'}}>Integrations</a></li><li className="mb-2"><a className="text-gray-600 hover:text-gray-900 transition duration-150 ease-in-out" href="/" style={{outline: 'none'}}>Command-line</a></li></ul></div><div className="sm:col-span-6 md:col-span-3 lg:col-span-2"><h6 className="text-gray-800 font-medium mb-2">Resources</h6><ul className="text-sm"><li className="mb-2"><a className="text-gray-600 hover:text-gray-900 transition duration-150 ease-in-out" href="/" style={{outline: 'none'}}>Documentation</a></li><li className="mb-2"><a className="text-gray-600 hover:text-gray-900 transition duration-150 ease-in-out" href="/" style={{outline: 'none'}}>Tutorials &amp; Guides</a></li><li className="mb-2"><a className="text-gray-600 hover:text-gray-900 transition duration-150 ease-in-out" href="/" style={{outline: 'none'}}>Blog</a></li><li className="mb-2"><a className="text-gray-600 hover:text-gray-900 transition duration-150 ease-in-out" href="/" style={{outline: 'none'}}>Support Center</a></li><li className="mb-2"><a className="text-gray-600 hover:text-gray-900 transition duration-150 ease-in-out" href="/" style={{outline: 'none'}}>Partners</a></li></ul></div><div className="sm:col-span-6 md:col-span-3 lg:col-span-2"><h6 className="text-gray-800 font-medium mb-2">Company</h6><ul className="text-sm"><li className="mb-2"><a className="text-gray-600 hover:text-gray-900 transition duration-150 ease-in-out" href="/" style={{outline: 'none'}}>Home</a></li><li className="mb-2"><a className="text-gray-600 hover:text-gray-900 transition duration-150 ease-in-out" href="/" style={{outline: 'none'}}>About us</a></li><li className="mb-2"><a className="text-gray-600 hover:text-gray-900 transition duration-150 ease-in-out" href="/" style={{outline: 'none'}}>Company values</a></li><li className="mb-2"><a className="text-gray-600 hover:text-gray-900 transition duration-150 ease-in-out" href="/" style={{outline: 'none'}}>Pricing</a></li><li className="mb-2"><a className="text-gray-600 hover:text-gray-900 transition duration-150 ease-in-out" href="/" style={{outline: 'none'}}>Privacy Policy</a></li></ul></div><div className="sm:col-span-6 md:col-span-3 lg:col-span-3"><h6 className="text-gray-800 font-medium mb-2">Subscribe</h6><p className="text-sm text-gray-600 mb-4">Get the latest news and articles to your inbox every month.</p><form><div className="flex flex-wrap mb-4"><div className="w-full"><label className="block text-sm sr-only" htmlFor="newsletter">Email</label><div className="relative flex items-center max-w-xs"><input id="newsletter" type="email" className="form-input w-full text-gray-800 px-3 py-2 pr-12 text-sm" placeholder="Your email" required style={{outline: 'none'}} /><button type="submit" className="absolute inset-0 left-auto" aria-label="Subscribe" style={{outline: 'none'}}><span className="absolute inset-0 right-auto w-px -ml-px my-2 bg-gray-300" aria-hidden="true" /><svg className="w-3 h-3 fill-current text-blue-600 mx-3 flex-shrink-0" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg"><path d="M11.707 5.293L7 .586 5.586 2l3 3H0v2h8.586l-3 3L7 11.414l4.707-4.707a1 1 0 000-1.414z" fillRule="nonzero" /></svg></button></div></div></div></form></div></div><div className="md:flex md:items-center md:justify-between py-4 md:py-8 border-t border-gray-200"><ul className="flex mb-4 md:order-1 md:ml-4 md:mb-0"><li><a className="flex justify-center items-center text-gray-600 hover:text-gray-900 bg-white hover:bg-white-100 rounded-full shadow transition duration-150 ease-in-out" aria-label="Twitter" href="/" style={{outline: 'none'}}><svg className="w-8 h-8 fill-current" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><path d="M24 11.5c-.6.3-1.2.4-1.9.5.7-.4 1.2-1 1.4-1.8-.6.4-1.3.6-2.1.8-.6-.6-1.5-1-2.4-1-1.7 0-3.2 1.5-3.2 3.3 0 .3 0 .5.1.7-2.7-.1-5.2-1.4-6.8-3.4-.3.5-.4 1-.4 1.7 0 1.1.6 2.1 1.5 2.7-.5 0-1-.2-1.5-.4 0 1.6 1.1 2.9 2.6 3.2-.3.1-.6.1-.9.1-.2 0-.4 0-.6-.1.4 1.3 1.6 2.3 3.1 2.3-1.1.9-2.5 1.4-4.1 1.4H8c1.5.9 3.2 1.5 5 1.5 6 0 9.3-5 9.3-9.3v-.4c.7-.5 1.3-1.1 1.7-1.8z" /></svg></a></li><li className="ml-4"><a className="flex justify-center items-center text-gray-600 hover:text-gray-900 bg-white hover:bg-white-100 rounded-full shadow transition duration-150 ease-in-out" aria-label="Github" href="/" style={{outline: 'none'}}><svg className="w-8 h-8 fill-current" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><path d="M16 8.2c-4.4 0-8 3.6-8 8 0 3.5 2.3 6.5 5.5 7.6.4.1.5-.2.5-.4V22c-2.2.5-2.7-1-2.7-1-.4-.9-.9-1.2-.9-1.2-.7-.5.1-.5.1-.5.8.1 1.2.8 1.2.8.7 1.3 1.9.9 2.3.7.1-.5.3-.9.5-1.1-1.8-.2-3.6-.9-3.6-4 0-.9.3-1.6.8-2.1-.1-.2-.4-1 .1-2.1 0 0 .7-.2 2.2.8.6-.2 1.3-.3 2-.3s1.4.1 2 .3c1.5-1 2.2-.8 2.2-.8.4 1.1.2 1.9.1 2.1.5.6.8 1.3.8 2.1 0 3.1-1.9 3.7-3.7 3.9.3.4.6.9.6 1.6v2.2c0 .2.1.5.6.4 3.2-1.1 5.5-4.1 5.5-7.6-.1-4.4-3.7-8-8.1-8z" /></svg></a></li><li className="ml-4"><a className="flex justify-center items-center text-gray-600 hover:text-gray-900 bg-white hover:bg-white-100 rounded-full shadow transition duration-150 ease-in-out" aria-label="Facebook" href="/" style={{outline: 'none'}}><svg className="w-8 h-8 fill-current" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><path d="M14.023 24L14 17h-3v-3h3v-2c0-2.7 1.672-4 4.08-4 1.153 0 2.144.086 2.433.124v2.821h-1.67c-1.31 0-1.563.623-1.563 1.536V14H21l-1 3h-2.72v7h-3.257z" /></svg></a></li></ul><div className="text-sm text-gray-600 mr-4">Made by <a className="text-blue-600 hover:underline" href="https://cruip.com/" style={{outline: 'none'}}>Cruip</a>. All rights reserved.</div></div></div></footer>
+                {/* Image Logo */}
+                <a className="inline-block mr-4 py-0.5 text-xl whitespace-nowrap hover:no-underline focus:no-underline" href="index.html">
+                    <img src="/static/pavo/images/logo.svg" alt="alternative" className="h-8" />
+                </a>
+
+                <button className="background-transparent rounded text-xl leading-none hover:no-underline focus:no-underline lg:hidden lg:text-gray-400" type="button" data-toggle="offcanvas">
+                    <span className="navbar-toggler-icon inline-block w-8 h-8 align-middle"></span>
+                </button>
+
+                <div className="navbar-collapse offcanvas-collapse lg:flex lg:flex-grow lg:items-center" id="navbarsExampleDefault">
+                    <ul className="pl-0 mt-3 mb-2 ml-auto flex flex-col list-none lg:mt-0 lg:mb-0 lg:flex-row">
+                        <li>
+                            <a className="nav-link page-scroll active" href="#header">Home <span className="sr-only">(current)</span></a>
+                        </li>
+                        <li>
+                            <a className="nav-link page-scroll" href="#features">Features</a>
+                        </li>
+                        <li>
+                            <a className="nav-link page-scroll" href="#details">Details</a>
+                        </li>
+                        <li>
+                            <a className="nav-link page-scroll" href="#pricing">Pricing</a>
+                        </li>
+                        <li className="dropdown">
+                            <a className="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Drop</a>
+                            <div className="dropdown-menu" aria-labelledby="dropdown01">
+                                <a className="dropdown-item page-scroll" href="article.html">Article Details</a>
+                                <div className="dropdown-divider"></div>
+                                <a className="dropdown-item page-scroll" href="terms.html">Terms Conditions</a>
+                                <div className="dropdown-divider"></div>
+                                <a className="dropdown-item page-scroll" href="privacy.html">Privacy Policy</a>
+                            </div>
+                        </li>
+                        <li>
+                            <a className="nav-link page-scroll" href="#download">Download</a>
+                        </li>
+                    </ul>
+                    <span className="block lg:ml-3.5">
+                        <a className="no-underline" href="#your-link">
+                            <i className="fab fa-apple text-indigo-600 hover:text-pink-500 text-xl transition-all duration-200 mr-1.5"></i>
+                        </a>
+                        <a className="no-underline" href="#your-link">
+                            <i className="fab fa-android text-indigo-600 hover:text-pink-500 text-xl transition-all duration-200"></i>
+                        </a>
+                    </span>
+                </div> {/* end of navbar-collapse */}
+            </div> {/* end of container */}
+        </nav> {/* end of navbar */}
+        {/* end of navigation */}
+
+        {/* Header */}
+        <header id="header" className="header py-28 text-center md:pt-36 lg:text-left xl:pt-44 xl:pb-32">
+            <div className="container px-4 sm:px-8 lg:grid lg:grid-cols-2 lg:gap-x-8">
+                <div className="mb-16 lg:mt-32 xl:mt-40 xl:mr-12">
+                    <h1 className="h1-large mb-5">Team management mobile application</h1>
+                    <p className="p-large mb-8">Start getting things done together with your team based on Pavo's revolutionary team management features</p>
+                    <a className="btn-solid-lg" href="#your-link"><i className="fab fa-apple"></i>Download</a>
+                    <a className="btn-solid-lg secondary" href="#your-link"><i className="fab fa-google-play"></i>Download</a>
+                </div>
+                <div className="xl:text-right">
+                    <img className="inline" src="/static/pavo/images/header-smartphone.png" alt="alternative" />
+                </div>
+            </div> {/* end of container */}
+        </header> {/* end of header */}
+        {/* end of header */}
+
+
+        {/* Introduction */}
+        <div className="pt-4 pb-14 text-center">
+            <div className="container px-4 sm:px-8 xl:px-4">
+                <p className="mb-4 text-gray-800 text-3xl leading-10 lg:max-w-5xl lg:mx-auto"> Team management mobile apps don’t get better than Pavo. It’s probably the best app in the world for this purpose. Don’t hesitate to give it a try today and you will fall in love with it</p>
+            </div> {/* end of container */}
+        </div>
+        {/* end of introduction */}
+
+
+        {/* Features */}
+        <div id="features" className="cards-1">
+            <div className="container px-4 sm:px-8 xl:px-4">
+
+                {/* Card */}
+                <div className="card">
+                    <div className="card-image">
+                        <img src="/static/pavo/images/features-icon-1.svg" alt="alternative" />
+                    </div>
+                    <div className="card-body">
+                        <h5 className="card-title">Platform Integration</h5>
+                        <p className="mb-4">You sales force can use the app on any smartphone platform without compatibility issues</p>
+                    </div>
+                </div>
+                {/* end of card */}
+
+                {/* Card */}
+                <div className="card">
+                    <div className="card-image">
+                        <img src="/static/pavo/images/features-icon-2.svg" alt="alternative" />
+                    </div>
+                    <div className="card-body">
+                        <h5 className="card-title">Easy On Resources</h5>
+                        <p className="mb-4">Works smoothly even on older generation hardware due to our optimization efforts</p>
+                    </div>
+                </div>
+                {/* end of card */}
+
+                {/* Card */}
+                <div className="card">
+                    <div className="card-image">
+                        <img src="/static/pavo/images/features-icon-3.svg" alt="alternative" />
+                    </div>
+                    <div className="card-body">
+                        <h5 className="card-title">Great Performance</h5>
+                        <p className="mb-4">Optimized code and innovative technology insure no delays and ultra-fast responsiveness</p>
+                    </div>
+                </div>
+                {/* end of card */}
+
+                {/* Card */}
+                <div className="card">
+                    <div className="card-image">
+                        <img src="/static/pavo/images/features-icon-4.svg" alt="alternative" />
+                    </div>
+                    <div className="card-body">
+                        <h5 className="card-title">Multiple Languages</h5>
+                        <p className="mb-4">Choose from one of the 40 languages that come pre-installed and start selling smarter</p>
+                    </div>
+                </div>
+                {/* end of card */}
+
+                {/* Card */}
+                <div className="card">
+                    <div className="card-image">
+                        <img src="/static/pavo/images/features-icon-5.svg" alt="alternative" />
+                    </div>
+                    <div className="card-body">
+                        <h5 className="card-title">Free Updates</h5>
+                        <p className="mb-4">Don't worry about future costs, pay once and receive all future updates at no extra cost</p>
+                    </div>
+                </div>
+                {/* end of card */}
+
+                {/* Card */}
+                <div className="card">
+                    <div className="card-image">
+                        <img src="/static/pavo/images/features-icon-6.svg" alt="alternative" />
+                    </div>
+                    <div className="card-body">
+                        <h5 className="card-title">Community Support</h5>
+                        <p className="mb-4">Register the app and get acces to knowledge and ideas from the Pavo online community</p>
+                    </div>
+                </div>
+                {/* end of card */}
+
+            </div> {/* end of container */}
+        </div> {/* end of cards-1 */}
+        {/* end of features */}
+
+
+        {/* Details 1 */}
+        <div id="details" className="pt-12 pb-16 lg:pt-16">
+            <div className="container px-4 sm:px-8 lg:grid lg:grid-cols-12 lg:gap-x-12">
+                <div className="lg:col-span-5">
+                    <div className="mb-16 lg:mb-0 xl:mt-16">
+                        <h2 className="mb-6">Results driven ground breaking technology</h2>
+                        <p className="mb-4">Based on our team's extensive experience in developing line of business applications and constructive customer feedback we reached a new level of revenue.</p>
+                        <p className="mb-4">We enjoy helping small and medium sized tech businesses take a shot at established Fortune 500 companies</p>
+                    </div>
+                </div> {/* end of col */}
+                <div className="lg:col-span-7">
+                    <div className="xl:ml-14">
+                        <img className="inline" src="/static/pavo/images/details-1.jpg" alt="alternative" />
+                    </div>
+                </div> {/* end of col */}
+            </div> {/* end of container */}
+        </div>
+        {/* end of details 1 */}
+
+
+        {/* Details 2 */}
+        <div className="py-24">
+            <div className="container px-4 sm:px-8 lg:grid lg:grid-cols-12 lg:gap-x-12">
+                <div className="lg:col-span-7">
+                    <div className="mb-12 lg:mb-0 xl:mr-14">
+                        <img className="inline" src="/static/pavo/images/details-2.jpg" alt="alternative" />
+                    </div>
+                </div> {/* end of col */}
+                <div className="lg:col-span-5">
+                    <div className="xl:mt-12">
+                        <h2 className="mb-6">Instant results for the marketing department</h2>
+                        <ul className="list mb-7 space-y-2">
+                            <li className="flex">
+                                <i className="fas fa-chevron-right"></i>
+                                <div>Features that will help you and your marketers</div>
+                            </li>
+                            <li className="flex">
+                                <i className="fas fa-chevron-right"></i>
+                                <div>Smooth learning curve due to the knowledge base</div>
+                            </li>
+                            <li className="flex">
+                                <i className="fas fa-chevron-right"></i>
+                                <div>Ready out-of-the-box with minor setup settings</div>
+                            </li>
+                        </ul>
+                        <a className="btn-solid-reg popup-with-move-anim mr-1.5" href="#details-lightbox">Lightbox</a>
+                        <a className="btn-outline-reg" href="article.html">Details</a>
+                    </div>
+                </div> {/* end of col */}
+            </div> {/* end of container */}
+        </div>
+        {/* end of details 2 */}
+
+
+        {/* Details Lightbox */}
+        {/* Lightbox */}
+        <div id="details-lightbox" className="lightbox-basic zoom-anim-dialog mfp-hide">
+            <div className="lg:grid lg:grid-cols-12 lg:gap-x-8">
+                <button title="Close (Esc)" type="button" className="mfp-close x-button">×</button>
+                <div className="lg:col-span-8">
+                    <div className="mb-12 text-center lg:mb-0 lg:text-left xl:mr-6">
+                        <img className="inline rounded-lg" src="/static/pavo/images/details-lightbox.jpg" alt="alternative" />
+                    </div>
+                </div> {/* end of col */}
+                <div className="lg:col-span-4">
+                    <h3 className="mb-2">Goals Setting</h3>
+                    <hr className="w-11 h-0.5 mt-0.5 mb-4 ml-0 border-none bg-indigo-600" />
+                    <p>The app can easily help you track your personal development evolution if you take the time to set it up.</p>
+                    <h4 className="mt-7 mb-2.5">User Feedback</h4>
+                    <p className="mb-4">This is a great app which can help you save time and make your live easier. And it will help improve your productivity.</p>
+                    <ul className="list mb-6 space-y-2">
+                        <li className="flex">
+                            <i className="fas fa-chevron-right"></i>
+                            <div>Splash screen panel</div>
+                        </li>
+                        <li className="flex">
+                            <i className="fas fa-chevron-right"></i>
+                            <div>Statistics graph report</div>
+                        </li>
+                        <li className="flex">
+                            <i className="fas fa-chevron-right"></i>
+                            <div>Events calendar layout</div>
+                        </li>
+                        <li className="flex">
+                            <i className="fas fa-chevron-right"></i>
+                            <div>Location details screen</div>
+                        </li>
+                        <li className="flex">
+                            <i className="fas fa-chevron-right"></i>
+                            <div>Onboarding steps interface</div>
+                        </li>
+                    </ul>
+                    <a className="btn-solid-reg mfp-close page-scroll" href="#download">Download</a>
+                    <button className="btn-outline-reg mfp-close as-button" type="button">Back</button>
+                </div> {/* end of col */}
+            </div> {/* end of row */}
+        </div> {/* end of lightbox-basic */}
+        {/* end of lightbox */}
+        {/* end of details lightbox */}
+
+
+        {/* Details 3 */}
+        <div className="pt-16 pb-12">
+            <div className="container px-4 sm:px-8 lg:grid lg:grid-cols-12 lg:gap-x-12">
+                <div className="lg:col-span-5">
+                    <div className="mb-16 lg:mb-0 xl:mt-16">
+                        <h2 className="mb-6">Platform integration and life time free updates</h2>
+                        <p className="mb-4">Get a glimpse of what this app can do for your marketing automation and understand why current users are so excited when using Pavo
+                            together with their teams.</p>
+                        <p className="mb-4">We will promptly answer any questions and honor your requests based on the service level agreement</p>
+                    </div>
+                </div> {/* end of col */}
+                <div className="lg:col-span-7">
+                    <div className="ml-14">
+                        <img className="inline" src="/static/pavo/images/details-3.jpg" alt="alternative" />
+                    </div>
+                </div> {/* end of col */}
+            </div> {/* end of container */}
+        </div>
+        {/* end of details 3 */}
+
+
+        {/* Statistics */}
+        <div className="counter">
+            <div className="container px-4 sm:px-8">
+                
+                {/* Counter */}
+                <div id="counter">
+                    <div className="cell">
+                        <div className="counter-value number-count" data-count="231">1</div>
+                        <p className="counter-info">Happy Users</p>
+                    </div>
+                    <div className="cell">
+                        <div className="counter-value number-count" data-count="385">1</div>
+                        <p className="counter-info">Issues Solved</p>
+                    </div>
+                    <div className="cell">
+                        <div className="counter-value number-count" data-count="159">1</div>
+                        <p className="counter-info">Good Reviews</p>
+                    </div>
+                    <div className="cell">
+                        <div className="counter-value number-count" data-count="127">1</div>
+                        <p className="counter-info">Case Studies</p>
+                    </div>
+                    <div className="cell">
+                        <div className="counter-value number-count" data-count="211">1</div>
+                        <p className="counter-info">Orders Received</p>
+                    </div>
+                </div>
+                {/* end of counter */}
+
+            </div> {/* end of container */}
+        </div> {/* end of counter */}
+        {/* end of statistics */}
+
+
+        {/* Testimonials */}
+        <div className="slider-1 py-32 bg-gray">
+            <div className="container px-4 sm:px-8">
+                <h2 className="mb-12 text-center lg:max-w-xl lg:mx-auto">What do users think about Pavo</h2>
+
+                {/* Card Slider */}
+                <div className="slider-container">
+                    <div className="swiper-container card-slider">
+                        <div className="swiper-wrapper">
+                            
+                            {/* Slide */}
+                            <div className="swiper-slide">
+                                <div className="card">
+                                    <img className="card-image" src="/static/pavo/images/testimonial-1.jpg" alt="alternative" />
+                                    <div className="card-body">
+                                        <p className="italic mb-3">It's been so fun to work with Pavo, I've managed to integrate it properly into my business flow and it's great</p>
+                                        <p className="testimonial-author">Jude Thorn - Designer</p>
+                                    </div>
+                                </div>
+                            </div> {/* end of swiper-slide */}
+                            {/* end of slide */}
+
+                            {/* Slide */}
+                            <div className="swiper-slide">
+                                <div className="card">
+                                    <img className="card-image" src="/static/pavo/images/testimonial-2.jpg" alt="alternative" />
+                                    <div className="card-body">
+                                        <p className="italic mb-3">We were so focused on launching as many campaigns as possible that we've forgotten to target our loyal customers</p>
+                                        <p className="testimonial-author">Roy Smith - Developer</p>
+                                    </div>
+                                </div>
+                            </div> {/* end of swiper-slide */}
+                            {/* end of slide */}
+
+                            {/* Slide */}
+                            <div className="swiper-slide">
+                                <div className="card">
+                                    <img className="card-image" src="/static/pavo/images/testimonial-3.jpg" alt="alternative" />
+                                    <div className="card-body">
+                                        <p className="italic mb-3">I've been searching for a tool like Pavo for so long. I love the reports it generates and the amazing high accuracy</p>
+                                        <p className="testimonial-author">Marsha Singer - Marketer</p>
+                                    </div>
+                                </div>
+                            </div> {/* end of swiper-slide */}
+                            {/* end of slide */}
+
+                            {/* Slide */}
+                            <div className="swiper-slide">
+                                <div className="card">
+                                    <img className="card-image" src="/static/pavo/images/testimonial-4.jpg" alt="alternative" />
+                                    <div className="card-body">
+                                        <p className="italic mb-3">We've been waiting for a powerful piece of software that can help businesses manage their marketing projects</p>
+                                        <p className="testimonial-author">Tim Shaw - Designer</p>
+                                    </div>
+                                </div>
+                            </div> {/* end of swiper-slide */}
+                            {/* end of slide */}
+
+                            {/* Slide */}
+                            <div className="swiper-slide">
+                                <div className="card">
+                                    <img className="card-image" src="/static/pavo/images/testimonial-5.jpg" alt="alternative" />
+                                    <div className="card-body">
+                                        <p className="italic mb-3">Searching for a great prototyping and layout design app was difficult but thankfully I found app suite quickly</p>
+                                        <p className="testimonial-author">Lindsay Spice - Marketer</p>
+                                    </div>
+                                </div>
+                            </div> {/* end of swiper-slide */}
+                            {/* end of slide */}
+
+                            {/* Slide */}
+                            <div className="swiper-slide">
+                                <div className="card">
+                                    <img className="card-image" src="/static/pavo/images/testimonial-6.jpg" alt="alternative" />
+                                    <div className="card-body">
+                                        <p className="italic mb-3">The app support team is amazing. They've helped me with some issues and I am so grateful to the entire team</p>
+                                        <p className="testimonial-author">Ann Blake - Developer</p>
+                                    </div>
+                                </div>
+                            </div> {/* end of swiper-slide */}
+                            {/* end of slide */}
+
+                        </div> {/* end of swiper-wrapper */}
+
+                        {/* Add Arrows */}
+                        <div className="swiper-button-next"></div>
+                        <div className="swiper-button-prev"></div>
+                        {/* end of add arrows */}
+
+                    </div> {/* end of swiper-container */}
+                </div> {/* end of slider-container */}
+                {/* end of card slider */}
+
+            </div> {/* end of container */}
+        </div> {/* end of slider-1 */}
+        {/* end of testimonials */}
+
+
+        {/* Pricing */}
+        <div id="pricing" className="cards-2">
+            <div className="absolute bottom-0 h-40 w-full bg-white"></div>
+            <div className="container px-4 pb-px sm:px-8">
+                <h2 className="mb-2.5 text-white lg:max-w-xl lg:mx-auto">Pricing options for all budgets</h2>
+                <p className="mb-16 text-white lg:max-w-3xl lg:mx-auto"> Our pricing plans are setup in such a way that any user can start enjoying Pavo without worrying so much about costs. They are flexible and work for any type of industry </p>
+
+                {/* Card*/}
+                <div className="card">
+                    <div className="card-body">
+                        <div className="card-title">STANDARD</div>
+                        <div className="price"><span className="currency">$</span><span className="value">29</span></div>
+                        <div className="frequency">monthly</div>
+                        <p>This basic package covers the marketing needs of small startups</p>
+                        <ul className="list mb-7 space-y-2 text-left">
+                            <li className="flex">
+                                <i className="fas fa-chevron-right"></i>
+                                <div>List building and relations</div>
+                            </li>
+                            <li className="flex">
+                                <i className="fas fa-chevron-right"></i>
+                                <div>Seamless platform integration</div>
+                            </li>
+                            <li className="flex">
+                                <i className="fas fa-chevron-right"></i>
+                                <div>Great performance on devices</div>
+                            </li>
+                            <li className="flex">
+                                <i className="fas fa-chevron-right"></i>
+                                <div>Community support and videos</div>
+                            </li>
+                        </ul>
+                        <div className="button-wrapper">
+                            <a className="btn-solid-reg page-scroll" href="#download">Download</a>
+                        </div>
+                    </div>
+                </div> {/* end of card */}
+                {/* end of card */}
+
+                {/* Card*/}
+                <div className="card">
+                    <div className="card-body">
+                        <div className="card-title">ADVANCED</div>
+                        <div className="price"><span className="currency">$</span><span className="value">39</span></div>
+                        <div className="frequency">monthly</div>
+                        <p>This is a more advanced package suited for medium companies</p>
+                        <ul className="list mb-7 space-y-2 text-left">
+                            <li className="flex">
+                                <i className="fas fa-chevron-right"></i>
+                                <div>List building and relations</div>
+                            </li>
+                            <li className="flex">
+                                <i className="fas fa-chevron-right"></i>
+                                <div>Seamless platform integration</div>
+                            </li>
+                            <li className="flex">
+                                <i className="fas fa-chevron-right"></i>
+                                <div>Great performance on devices</div>
+                            </li>
+                            <li className="flex">
+                                <i className="fas fa-chevron-right"></i>
+                                <div>Community support and videos</div>
+                            </li>
+                        </ul>
+                        <div className="button-wrapper">
+                            <a className="btn-solid-reg page-scroll" href="#download">Download</a>
+                        </div>
+                    </div>
+                </div> {/* end of card */}
+                {/* end of card */}
+
+                {/* Card*/}
+                <div className="card">
+                    <div className="card-body">
+                        <div className="card-title">COMPLETE</div>
+                        <div className="price"><span className="currency">$</span><span className="value">49</span></div>
+                        <div className="frequency">monthly</div>
+                        <p>This is a comprehensive package designed for big organizations</p>
+                        <ul className="list mb-7 text-left space-y-2">
+                            <li className="flex">
+                                <i className="fas fa-chevron-right"></i>
+                                <div>List building and relations</div>
+                            </li>
+                            <li className="flex">
+                                <i className="fas fa-chevron-right"></i>
+                                <div>Seamless platform integration</div>
+                            </li>
+                            <li className="flex">
+                                <i className="fas fa-chevron-right"></i>
+                                <div>Great performance on devices</div>
+                            </li>
+                            <li className="flex">
+                                <i className="fas fa-chevron-right"></i>
+                                <div>Community support and videos</div>
+                            </li>
+                        </ul>
+                        <div className="button-wrapper">
+                            <a className="btn-solid-reg page-scroll" href="#download">Download</a>
+                        </div>
+                    </div>
+                </div> {/* end of card */}
+                {/* end of card */}
+
+            </div> {/* end of container */}
+        </div> {/* end of cards-2 */}
+        {/* end of pricing */}
+
+
+        {/* Conclusion */}
+        <div id="download" className="basic-5">
+            <div className="container px-4 sm:px-8 lg:grid lg:grid-cols-2">
+                <div className="mb-16 lg:mb-0">
+                    <img src="/static/pavo/images/conclusion-smartphone.png" alt="alternative" />
+                </div>
+                <div className="lg:mt-24 xl:mt-44 xl:ml-12">
+                    <p className="mb-9 text-gray-800 text-3xl leading-10">Team management mobile applications don’t get much better than Pavo. Download it today</p>
+                    <a className="btn-solid-lg" href="#your-link"><i className="fab fa-apple"></i>Download</a>
+                    <a className="btn-solid-lg secondary" href="#your-link"><i className="fab fa-google-play"></i>Download</a>
+                </div>
+            </div> {/* end of container */}
+        </div> {/* end of basic-5 */}
+        {/* end of conclusion */}
+
+
+        {/* Footer */}
+        <div className="footer">
+            <div className="container px-4 sm:px-8">
+                <h4 className="mb-8 lg:max-w-3xl lg:mx-auto">Pavo is a mobile application for marketing automation and you can reach the team at <a className="text-indigo-600 hover:text-gray-500" href="mailto:email@domain.com">email@domain.com</a></h4>
+                <div className="social-container">
+                    <span className="fa-stack">
+                        <a href="#your-link">
+                            <i className="fas fa-circle fa-stack-2x"></i>
+                            <i className="fab fa-facebook-f fa-stack-1x"></i>
+                        </a>
+                    </span>
+                    <span className="fa-stack">
+                        <a href="#your-link">
+                            <i className="fas fa-circle fa-stack-2x"></i>
+                            <i className="fab fa-twitter fa-stack-1x"></i>
+                        </a>
+                    </span>
+                    <span className="fa-stack">
+                        <a href="#your-link">
+                            <i className="fas fa-circle fa-stack-2x"></i>
+                            <i className="fab fa-pinterest-p fa-stack-1x"></i>
+                        </a>
+                    </span>
+                    <span className="fa-stack">
+                        <a href="#your-link">
+                            <i className="fas fa-circle fa-stack-2x"></i>
+                            <i className="fab fa-instagram fa-stack-1x"></i>
+                        </a>
+                    </span>
+                    <span className="fa-stack">
+                        <a href="#your-link">
+                            <i className="fas fa-circle fa-stack-2x"></i>
+                            <i className="fab fa-youtube fa-stack-1x"></i>
+                        </a>
+                    </span>
+                </div> {/* end of social-container */}
+            </div> {/* end of container */}
+        </div> {/* end of footer */}
+        {/* end of footer */}
+
+
+
     </div>
   )
 }
