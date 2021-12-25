@@ -17,14 +17,14 @@ const Home: NextPage = () => {
         <>
             <IntroductionSection />
             <FeaturesSection />
-            <Details1Section />
+            {/* <Details1Section />
             <Details2Section />
             <DetailsLightboxSection />
             <Details3Section />
             <StadisticsSection />
             <TestimonialsSection />
-            <PricingSection />
-            <DownloadSection />
+            <PricingSection /> */}
+            {/* <DownloadSection /> */}
         </>
     )
 }
