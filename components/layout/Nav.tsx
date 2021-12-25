@@ -1,15 +1,21 @@
+import Link from 'next/link';
+
 export const Nav = () => {
     return (
         <nav className="navbar fixed-top">
             <div className="container sm:px-4 lg:px-8 flex flex-wrap items-center justify-between lg:flex-nowrap">
-
-                {/* Text Logo - Use this if you don't have a graphic logo */}
-                {/* <a className="text-gray-800 font-semibold text-3xl leading-4 no-underline page-scroll" href="index.html">Pavo</a> */}
+                <Link href='/'>
+                    <a className="text-gray-800 font-semibold text-3xl leading-4 no-underline page-scroll">
+                        My Blog
+                    </a>
+                </Link>
 
                 {/* Image Logo */}
-                <a className="inline-block mr-4 py-0.5 text-xl whitespace-nowrap hover:no-underline focus:no-underline" href="index.html">
-                    <img src="/static/pavo/images/logo.svg" alt="alternative" className="h-8" />
-                </a>
+                {/* <Link href='#header'>
+                    <a className="inline-block mr-4 py-0.5 text-xl whitespace-nowrap hover:no-underline focus:no-underline">
+                        <img src="/static/pavo/images/logo.svg" alt="alternative" className="h-8" />
+                    </a>
+                </Link> */}
 
                 <button className="background-transparent rounded text-xl leading-none hover:no-underline focus:no-underline lg:hidden lg:text-gray-400" type="button" data-toggle="offcanvas">
                     <span className="navbar-toggler-icon inline-block w-8 h-8 align-middle"></span>
@@ -23,7 +29,7 @@ export const Nav = () => {
                         <li>
                             <a className="nav-link page-scroll" href="#features">Features</a>
                         </li>
-                        <li>
+                        {/* <li>
                             <a className="nav-link page-scroll" href="#details">Details</a>
                         </li>
                         <li>
@@ -41,14 +47,14 @@ export const Nav = () => {
                         </li>
                         <li>
                             <a className="nav-link page-scroll" href="#download">Download</a>
-                        </li>
+                        </li> */}
                     </ul>
                     <span className="block lg:ml-3.5">
                         <a className="no-underline" href="#your-link">
-                            <i className="fab fa-apple text-indigo-600 hover:text-pink-500 text-xl transition-all duration-200 mr-1.5"></i>
+                            <i className="fas fa-moon text-indigo-600 hover:text-pink-500 text-xl transition-all duration-200 mr-1.5"></i>
                         </a>
                         <a className="no-underline" href="#your-link">
-                            <i className="fab fa-android text-indigo-600 hover:text-pink-500 text-xl transition-all duration-200"></i>
+                            <i className="fas fa-sun text-indigo-600 hover:text-pink-500 text-xl transition-all duration-200"></i>
                         </a>
                     </span>
                 </div> {/* end of navbar-collapse */}
