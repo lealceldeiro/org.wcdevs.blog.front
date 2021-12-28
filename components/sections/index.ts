@@ -6,5 +6,5 @@ export * from './Details3Section';
 export *  from './PricingSection';
 export * from './TestimonialSection';
 export * from './StatisticsSection';
-export * from './FeaturesSection';
+export * from './BlogSection';
 export * from './DownloadSection';
