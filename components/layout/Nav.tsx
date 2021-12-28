@@ -24,30 +24,13 @@ export const Nav = () => {
                 <div className="navbar-collapse offcanvas-collapse lg:flex lg:flex-grow lg:items-center" id="navbarsExampleDefault">
                     <ul className="pl-0 mt-3 mb-2 ml-auto flex flex-col list-none lg:mt-0 lg:mb-0 lg:flex-row">
                         <li>
-                            <a className="nav-link page-scroll active" href="#header">Home <span className="sr-only">(current)</span></a>
+                            <a className="nav-link page-scroll active" href="#header">
+                                Home
+                            </a>
                         </li>
                         <li>
-                            <a className="nav-link page-scroll" href="#features">Features</a>
+                            <a className="nav-link page-scroll" href="#features">Articles</a>
                         </li>
-                        {/* <li>
-                            <a className="nav-link page-scroll" href="#details">Details</a>
-                        </li>
-                        <li>
-                            <a className="nav-link page-scroll" href="#pricing">Pricing</a>
-                        </li>
-                        <li className="dropdown">
-                            <a className="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Drop</a>
-                            <div className="dropdown-menu" aria-labelledby="dropdown01">
-                                <a className="dropdown-item page-scroll" href="article.html">Article Details</a>
-                                <div className="dropdown-divider"></div>
-                                <a className="dropdown-item page-scroll" href="terms.html">Terms Conditions</a>
-                                <div className="dropdown-divider"></div>
-                                <a className="dropdown-item page-scroll" href="privacy.html">Privacy Policy</a>
-                            </div>
-                        </li>
-                        <li>
-                            <a className="nav-link page-scroll" href="#download">Download</a>
-                        </li> */}
                     </ul>
                     <span className="block lg:ml-3.5">
                         <a className="no-underline" href="#your-link">
@@ -57,8 +40,8 @@ export const Nav = () => {
                             <i className="fas fa-sun text-indigo-600 hover:text-pink-500 text-xl transition-all duration-200"></i>
                         </a>
                     </span>
-                </div> {/* end of navbar-collapse */}
-            </div> {/* end of container */}
+                </div>
+            </div>
         </nav>
     )
 }
