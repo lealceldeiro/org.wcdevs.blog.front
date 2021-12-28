@@ -8,7 +8,7 @@ export default function Footer() {
             <div className="w-full sm:w-1/2 md:w-1/2 lg:w-1/4 wow fadeInUp animated" data-wow-delay="0.2s" style={{visibility: 'visible', WebkitAnimationDelay: '0.2s', MozAnimationDelay: '0.2s', animationDelay: '0.2s'}}>
               <div className="mx-3 mb-8">
                 <div className="footer-logo mb-3">
-                  <img src="assets/img/logo.svg" alt="" />
+                  {/* <img src="assets/img/logo.svg" alt="Logo" /> */}
                 </div>
                 <p className="text-gray-300">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam excepturi quasi, ipsam
                   voluptatem.</p>
