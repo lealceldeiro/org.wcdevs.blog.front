@@ -31,6 +31,11 @@ export const Nav = () => {
                         <li>
                             <a className="nav-link page-scroll" href="#features">Articles</a>
                         </li>
+                        <li>
+                            <Link href='/about'>
+                                <a className="nav-link page-scroll">About us</a>
+                            </Link>
+                        </li>
                     </ul>
                     <span className="block lg:ml-3.5">
                         <a className="no-underline" href="#your-link">
