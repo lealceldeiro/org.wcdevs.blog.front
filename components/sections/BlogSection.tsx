@@ -1,16 +1,16 @@
-import { BlogCard } from '../BlogCard';
-import { Blog } from '../../types';
+import { PostCard } from '../PostCard';
+import { Post } from '../../types';
 
 type Props = {
-    blogs: Blog[];
+    posts: Post[];
 }
 
-export const BlogSection: React.FC<Props> = ({ blogs }) => {  
+export const BlogSection: React.FC<Props> = ({ posts }) => {  
     return (
         <div id="features" className="cards-1">
             <div className="container px-4 sm:px-8 xl:px-4">
                 {
-                    blogs.map(item => <BlogCard key={item.id} blog={item} />)
+                    posts.map(item => <PostCard key={item.id} post={item} />)
                 }
             </div>
         </div>

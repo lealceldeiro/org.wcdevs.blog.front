@@ -5,12 +5,12 @@ import {
     IntroductionSection,
     BlogSection,    
 } from '../components/sections';
-import { Blog } from '../types';
+import { Post } from '../types';
 
 const Home: NextPage = () => {
-    const [blogs, setBlogs] = useState<Blog[]>([]);
+    const [posts, setPosts] = useState<Post[]>([]);
     useEffect(() => {
-        setBlogs([
+        setPosts([
             {
                 id: 'q',
                 title: 'Platform Integration',
@@ -72,9 +72,9 @@ const Home: NextPage = () => {
         <>
             <Header />
             <IntroductionSection />
-            <BlogSection blogs={blogs} />
+            <BlogSection posts={posts} />
         </>
     )
 }
 
-export default Home
+export default Home;
