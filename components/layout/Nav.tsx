@@ -6,7 +6,7 @@ export const Nav = () => {
             <div className="container sm:px-4 lg:px-8 flex flex-wrap items-center justify-between lg:flex-nowrap">
                 <Link href='/'>
                     <a className="text-gray-800 font-semibold text-3xl leading-4 no-underline page-scroll">
-                        My Blog
+                        Super Blog
                     </a>
                 </Link>
 

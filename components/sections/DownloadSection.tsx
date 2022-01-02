@@ -7,7 +7,8 @@ export const DownloadSection: React.FC = () => {
                 </div>
                 <div className="lg:mt-24 xl:mt-44 xl:ml-12">
                     <p className="mb-9 text-gray-800 text-3xl leading-10">
-                        Team management mobile applications don’t get much better than Pavo. Download it today
+                        The bloggers running these blogs are some of the best in the blogging business and you can learn a lot
+                        about blogging by observing their blogs
                     </p>
                     <a className="btn-solid-lg" href="#your-link"><i className="fab fa-apple"></i>Download</a>
                     <a className="btn-solid-lg secondary" href="#your-link"><i className="fab fa-google-play"></i>Download</a>

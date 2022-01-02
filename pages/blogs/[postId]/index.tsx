@@ -1,4 +1,6 @@
 import { GetStaticProps, NextPage, InferGetStaticPropsType, GetStaticPaths } from 'next';
+import { PostInfo } from '../../../components/PostInfo';
+import { mockPosts } from '../../../mocks';
 import { Post } from '../../../types';
 
 type Result = {
@@ -14,19 +16,14 @@ export const getStaticProps: GetStaticProps<Result, PostPageParams> = async (con
   // Call an external API endpoint to get posts.
   // const res = await fetch('https://.../posts/postId');
   // const post = await res.json();
-  const post: Post = {
-    id: postId,
-    title: 'Platform Integration',
-    summary: 'You sales force can use the app on any smartphone platform without compatibility issues',
-    image: {
-      src: '/static/pavo/images/features-icon-1.svg',
-      alt: 'alternative'
-    }
-  }
+  const post = mockPosts.find(item => item.id === postId);
+
+  // TODO: how to handle this  (post === undefined)
+  // POST not found
 
   return {
     props: {
-      post
+      post: post as Post
     }
   }
 }
@@ -37,15 +34,15 @@ type PostIdParams = {
   }
 }
 
-export const getStaticPaths: GetStaticPaths<{postId: string}> = async (context) => {
+export const getStaticPaths: GetStaticPaths<{ postId: string }> = async (context) => {
   const paths: PostIdParams[] = [
     {
       params: {
         postId: 'q'
       }
     }
-  ]; 
-  
+  ];
+
   return {
     paths,
     fallback: 'blocking'
@@ -57,10 +54,7 @@ type PostPageProps = InferGetStaticPropsType<typeof getStaticProps>;
 
 const PostPage: NextPage<PostPageProps> = ({ post }) => {
   return (
-    <div className='container py-16'>
-      <h1>{post.title}</h1>
-      <p>{post.summary}</p>
-    </div>
+    <PostInfo post={post} />
   )
 }
 

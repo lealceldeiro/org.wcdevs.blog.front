@@ -2,11 +2,11 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Post } from '../../types';
 
-type Props = {
+type PostCardProps = {
     post: Post;
 }
 
-export const PostCard: React.FC<Props> = ({ post }) => {
+export const PostCard: React.FC<PostCardProps> = ({ post }) => {
     return (
         <div className="card">
             <div className="card-image">
