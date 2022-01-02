@@ -14,7 +14,7 @@ export const PostCard: React.FC<Props> = ({ post }) => {
             </div>
             <div className="card-body">
                 <h5 className="card-title">
-                    <Link href={'/blogs/' + post.id}>
+                    <Link href={`/blogs/${post.id}`}>
                         {post.title}
                     </Link>
                 </h5>
