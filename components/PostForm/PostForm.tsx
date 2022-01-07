@@ -6,7 +6,6 @@ import { convertFromRaw, convertToRaw, EditorState } from 'draft-js';
 import { EditorProps } from 'react-draft-wysiwyg'
 const Editor = dynamic<EditorProps>(() => import('react-draft-wysiwyg').then(mod => mod.Editor), { ssr: false });
 import draftToHtml from 'draftjs-to-html';
-// import htmlToDraft from 'html-to-draftjs';
 import { generateRandomId } from '../../helpers';
 import { Post } from '../../types/Post';
 
@@ -25,10 +24,6 @@ export const PostForm: React.FC<PostFormProps> = ({ post, onCreatePost }) => {
   const { register, handleSubmit, formState: { errors } } = useForm<NewPostData>();
 
   const isNewPost = post.id === '';
-
-  useEffect(() => {
-    const postStored = sessionStorage.getItem(post.id);
-  }, [])
 
   useEffect(() => {
     if (post.content !== '') {

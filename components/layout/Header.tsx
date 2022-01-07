@@ -1,7 +1,22 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import { useSession, signIn, signOut } from 'next-auth/react';
+
 
 export const Header: React.FC = () => {
+
+    const { data: session } = useSession()
+    console.log({ session })
+
+    const handleLogin = async () => {
+        try {
+            const response = await signIn('cognito');
+            console.log({ response });
+        } catch (error) {
+            console.log({ error });
+        }
+    }
+
     return (
         <header id="header" className="header py-28 text-center md:pt-36 lg:text-left xl:pt-44 xl:pb-32">
             <div className="container px-4 sm:px-8 lg:grid lg:grid-cols-2 lg:gap-x-8">
@@ -19,7 +34,7 @@ export const Header: React.FC = () => {
                     <p className="p-large mb-8">
                         Online journal where an individual, group, or corporation presents a record of activities, thoughts, or beliefs.
                     </p>
-                    <a className="btn-solid-lg" href="#your-link">
+                    <a className="btn-solid-lg cursor-pointer" onClick={handleLogin}>
                         {/* <i className="fab fa-apple"></i> */}
                         Login
                     </a>
