@@ -1,3 +1,5 @@
+import draftToHtml from 'draftjs-to-html';
+import Link from 'next/link';
 import { Post } from '../../types';
 
 type PostInfoProps = {
@@ -7,8 +9,17 @@ type PostInfoProps = {
 export const PostInfo: React.FC<PostInfoProps> = ({ post }) => {
     return (
         <div className='container mt-16'>
-            <h1>{post.title}</h1>
-            <p className="mb-4">{post.summary}</p>
+            <Link href={`/blogs/${post.id}/edit-post`}>
+                <a className="rounded mb-5 text-white bg-blue-500 p-2 cursor-pointer hover:bg-blue-800">Edit post</a>
+            </Link>
+            <div className='mt-16'>
+                <h1 className="mb-5 text-[48px]">{post.title}</h1>
+                <div
+                    style={{ overflow: 'unset' }}
+                    className="rdw-editor-main"
+                    dangerouslySetInnerHTML={{ __html: draftToHtml(JSON.parse(post.content)) }}>
+                </div>
+            </div>
         </div>
     )
 }

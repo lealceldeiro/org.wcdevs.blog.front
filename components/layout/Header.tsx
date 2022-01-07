@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 
 export const Header: React.FC = () => {
     return (
@@ -6,6 +7,15 @@ export const Header: React.FC = () => {
             <div className="container px-4 sm:px-8 lg:grid lg:grid-cols-2 lg:gap-x-8">
                 <div className="mb-16 lg:mt-32 xl:mt-40 xl:mr-12">
                     <h1 className="h1-large mb-5">Online Publishing Platform</h1>
+                    <p>
+                        <Link href='/blogs/new-post'>
+                            <a>New Post</a>
+                        </Link>
+
+                        <Link href='/blogs'>
+                            <a className="ml-5">Posts</a>
+                        </Link>
+                    </p>
                     <p className="p-large mb-8">
                         Online journal where an individual, group, or corporation presents a record of activities, thoughts, or beliefs.
                     </p>

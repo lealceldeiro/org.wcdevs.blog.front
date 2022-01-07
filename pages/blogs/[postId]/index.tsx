@@ -1,7 +1,9 @@
 import { GetStaticProps, NextPage, InferGetStaticPropsType, GetStaticPaths } from 'next';
+import { useEffect, useState } from 'react';
 import { PostInfo } from '../../../components/PostInfo';
+import { getPost } from '../../../helpers';
 import { mockPosts } from '../../../mocks';
-import { Post } from '../../../types';
+import { Post, PostIdParams } from '../../../types';
 
 type Result = {
   post: Post;
@@ -28,21 +30,9 @@ export const getStaticProps: GetStaticProps<Result, PostPageParams> = async (con
   }
 }
 
-type PostIdParams = {
-  params: {
-    postId: string
-  }
-}
-
 export const getStaticPaths: GetStaticPaths<{ postId: string }> = async (context) => {
-  const paths: PostIdParams[] = [
-    {
-      params: {
-        postId: 'q'
-      }
-    }
-  ];
-
+  // TODO: check if we need to add some of the post pre-rendered here
+  const paths: PostIdParams[] = [];
   return {
     paths,
     fallback: 'blocking'
@@ -53,8 +43,22 @@ export const getStaticPaths: GetStaticPaths<{ postId: string }> = async (context
 type PostPageProps = InferGetStaticPropsType<typeof getStaticProps>;
 
 const PostPage: NextPage<PostPageProps> = ({ post }) => {
+
+  const [ready, setReady] = useState(false);
+  const [pp, setPP] = useState(post);
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') { // because windows is not mounted 
+      const p = getPost(post.id);
+      setPP(p ? p : post);
+      setReady(true);
+    }
+  }, [post]);
+
   return (
-    <PostInfo post={post} />
+    <div>
+      {ready && <PostInfo post={pp} />}
+    </div>
   )
 }
 

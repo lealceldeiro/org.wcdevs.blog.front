@@ -13,7 +13,8 @@ export const Layout: React.FC = ({ children }) => {
             </Head>
             <Nav />
             <div className="flex flex-col h-screen">
-                <main className="container mb-auto flex-grow  sm:px-4 lg:px-8 ">
+                <main className="mt-16 mb-auto flex-grow">
+                {/* <main className="container mt-16 mb-auto flex-grow sm:px-4 lg:px-8"> */}
                     {children}
                 </main>
                 <Footer />
