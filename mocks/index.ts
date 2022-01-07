@@ -5,7 +5,7 @@ export const mockPosts: Post[] = [
         id: 'q',
         title: 'Platform Integration',
         summary: 'You sales force can use the app on any smartphone platform without compatibility issues',
-        content: 'this is the content of the page',
+        content: '',
         image: {
             src: '/static/pavo/images/features-icon-1.svg',
             alt: 'alternative'
@@ -15,7 +15,7 @@ export const mockPosts: Post[] = [
         id: 'w',
         title: 'Easy On Resources',
         summary: 'Works smoothly even on older generation hardware due to our optimization efforts',
-        content: 'this is the content of the page',
+        content: '',
         image: {
             src: '/static/pavo/images/features-icon-2.svg',
             alt: 'alternative'
@@ -25,7 +25,7 @@ export const mockPosts: Post[] = [
         id: 'e',
         title: 'Great Performance',
         summary: 'Optimized code and innovative technology insure no delays and ultra-fast responsiveness',
-        content: 'this is the content of the page',
+        content: '',
         image: {
             src: '/static/pavo/images/features-icon-3.svg',
             alt: 'Alternative'
@@ -35,7 +35,7 @@ export const mockPosts: Post[] = [
         id: 'r',
         title: 'Multiple Languages',
         summary: 'Choose from one of the 40 languages that come pre-installed and start selling smarter',
-        content: 'this is the content of the page',
+        content: '',
         image: {
             src: '/static/pavo/images/features-icon-4.svg',
             alt: 'Alternative'
@@ -45,7 +45,7 @@ export const mockPosts: Post[] = [
         id: 't',
         title: 'Free Updates',
         summary: 'Don\'t worry about future costs, pay once and receive all future updates at no extra cost',
-        content: 'this is the content of the page',
+        content: '',
         image: {
             src: '/static/pavo/images/features-icon-5.svg',
             alt: 'Alternative'
@@ -55,7 +55,7 @@ export const mockPosts: Post[] = [
         id: 'y',
         title: 'Community Support',
         summary: 'Register the app and get acces to knowledge and ideas from the Pavo online community',
-        content: 'this is the content of the page',
+        content: '',
         image: {
             src: '/static/pavo/images/features-icon-6.svg',
             alt: 'Alternative'

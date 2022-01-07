@@ -8,14 +8,22 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "draft-js": "^0.11.7",
+    "draftjs-to-html": "^0.9.1",
+    "html-to-draftjs": "^1.5.0",
     "next": "12.0.4",
     "next-auth": "^4.0.0-beta.7",
     "react": "17.0.2",
-    "react-dom": "17.0.2"
+    "react-dom": "17.0.2",
+    "react-draft-wysiwyg": "^1.14.7",
+    "react-hook-form": "^7.22.5"
   },
   "devDependencies": {
+    "@types/draftjs-to-html": "^0.8.1",
+    "@types/html-to-draftjs": "^1.4.0",
     "@types/node": "16.11.9",
     "@types/react": "17.0.35",
+    "@types/react-draft-wysiwyg": "^1.13.4",
     "autoprefixer": "^10.4.0",
     "eslint": "7",
     "eslint-config-next": "12.0.4",

@@ -5,7 +5,7 @@ export const getPost = (postId: string): Post | null => {
     if (foundPost) {
         return JSON.parse(foundPost) as Post;
     }
-    return null
+    return null;
 }
 
 export const savePost = (post: Post) => {
