@@ -1,17 +1,13 @@
 export type Post = {
-    title: string;
-    slug: string;
-    excerpt: string;
-    commentsCount: number;
+  title: string;
+  slug: string;
+  excerpt: string;
+  body: string;
+  publishedBy: string;
+  updatedBy: string;
+  publishedOn: string;
+  updatedOn: string;
+  commentsCount: number;
 }
 
-export type PostInfo = {
-    title: string;
-    slug: string;
-    body: string;
-    excerpt: string;
-    publishedOn: string;
-    updatedOn: string;
-    publishedBy: string;
-    updatedBy: string;
-}
+export type PostWithoutBody = Omit<Post, 'body'>;

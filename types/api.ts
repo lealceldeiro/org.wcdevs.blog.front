@@ -1,4 +1,4 @@
-import { Post } from './Post';
+import { Post, PostWithoutBody } from './Post';
 import { Comment } from './Comment';
 
 export type CreateOrUpdatePostRequest = {
@@ -14,7 +14,6 @@ export type UpdatePostRequest = CreateOrUpdatePostRequest;
 
 export type UpdatePostResponse = CreatePostResponse;
 
-// TODO: ask for the patch for the post but it looks like is the same
 export type SortInfo = {
     sorted: boolean;
     unsorted: boolean;
@@ -43,7 +42,7 @@ export type PaginationInfo = {
 }
 
 export type GetPostsResponse = {
-    content: Post[];
+    content: PostWithoutBody[];
     pageable: Pageable;
 } & PaginationInfo
 
