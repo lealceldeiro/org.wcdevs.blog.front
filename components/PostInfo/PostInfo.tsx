@@ -9,7 +9,7 @@ type PostInfoProps = {
 export const PostInfo: React.FC<PostInfoProps> = ({ post }) => {
     return (
         <div className='container mt-16'>
-            <Link href={`/blogs/${post.id}/edit-post`}>
+            <Link href={`/blogs/${post.slug}/edit-post`}>
                 <a className="rounded mb-5 text-white bg-blue-500 p-2 cursor-pointer hover:bg-blue-800">Edit post</a>
             </Link>
             <div className='mt-16'>
@@ -17,7 +17,7 @@ export const PostInfo: React.FC<PostInfoProps> = ({ post }) => {
                 <div
                     style={{ overflow: 'unset' }}
                     className="rdw-editor-main"
-                    dangerouslySetInnerHTML={{ __html: draftToHtml(JSON.parse(post.content)) }}>
+                    dangerouslySetInnerHTML={{ __html: draftToHtml(JSON.parse(post.body)) }}>
                 </div>
             </div>
         </div>
