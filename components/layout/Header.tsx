@@ -23,11 +23,11 @@ export const Header: React.FC = () => {
                 <div className="mb-16 lg:mt-32 xl:mt-40 xl:mr-12">
                     <h1 className="h1-large mb-5">Online Publishing Platform</h1>
                     <p>
-                        <Link href='/blogs/new-post'>
+                        <Link href='/posts/new-post'>
                             <a>New Post</a>
                         </Link>
 
-                        <Link href='/blogs'>
+                        <Link href='/posts'>
                             <a className="ml-5">Posts</a>
                         </Link>
                     </p>

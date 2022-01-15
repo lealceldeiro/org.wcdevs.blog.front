@@ -5,6 +5,7 @@ import {
     AiOutlineEye,
     AiOutlineUser
 } from 'react-icons/ai';
+import { BsBookmarkPlus } from 'react-icons/bs';
 import { Post } from '../../types';
 
 type PostCardProps = {
@@ -15,6 +16,11 @@ export const PostCard: React.FC<PostCardProps> = ({ post }) => {
     return (
         <div className="p-4 lg:w-1/3">
             <div className="h-full bg-gray-100 bg-opacity-75 px-8 pt-16 pb-24 rounded-lg overflow-hidden text-center relative">
+                <span className="hover:bg-indigo-500 hover:text-white py-1 tracking-widest absolute cursor-pointer px-1
+                    right-0 top-0 rounded-bl transition-colors duration-500">
+                    <BsBookmarkPlus size={24} />
+                </span>
+
                 <h2 className="tracking-widest text-xs title-font font-medium text-gray-400 mb-1">
                     CATEGORY
                 </h2>

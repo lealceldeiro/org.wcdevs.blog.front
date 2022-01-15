@@ -27,7 +27,7 @@ const BlogsPage: NextPage<BlogsPageProps> = ({ posts }) => {
       <ul>
         {posts.map((post) => (
           <li key={post.slug}>
-            <Link href={`/blogs/${encodeURIComponent(post.slug)}`}>
+            <Link href={`/posts/${encodeURIComponent(post.slug)}`}>
               <a>{post.title}</a>
             </Link>
           </li>
