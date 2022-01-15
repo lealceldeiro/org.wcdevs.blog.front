@@ -15,7 +15,7 @@ type EditPostPageParams = {
 
 export const getStaticProps: GetStaticProps<Result, EditPostPageParams> = (context) => {
     const postId = context.params?.postId || ''
-    const postToEdit = mockPosts.find(item => item.id === postId) as Post;
+    const postToEdit = mockPosts.find(item => item.slug === postId) as Post;
     // TODO: check What to do if the post is not found
     return {
         props: {
@@ -41,7 +41,7 @@ const EditPostPage: NextPage<EditPostPageProps> = ({ post }) => {
 
     useEffect(() => {
         if (typeof window !== 'undefined') { // because windows is not mounted 
-            const p = getPost(post.id);
+            const p = getPost(post.slug);
             setPP(p ? p : post);
             setReady(true);
         }

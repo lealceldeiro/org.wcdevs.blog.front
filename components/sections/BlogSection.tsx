@@ -5,14 +5,16 @@ type Props = {
     posts: Post[];
 }
 
-export const BlogSection: React.FC<Props> = ({ posts }) => {  
+export const BlogSection: React.FC<Props> = ({ posts }) => {
     return (
-        <div id="features" className="cards-1">
-            <div className="container px-4 sm:px-8 xl:px-4">
-                {
-                    posts.map(item => <PostCard key={item.id} post={item} />)
-                }
+        <section className="text-gray-600 body-font">
+            <div className="container px-5 py-24 mx-auto">
+                <div className="flex flex-wrap -m-4">
+                    {
+                        posts.map(post => <PostCard key={post.slug} post={post} />)
+                    }
+                </div>
             </div>
-        </div>
+        </section>
     )
 }
