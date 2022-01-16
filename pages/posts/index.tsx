@@ -1,5 +1,4 @@
 import { GetStaticProps, InferGetStaticPropsType, NextPage } from 'next';
-import Link from 'next/link';
 import { PostCard2 } from '../../components';
 import { mockPosts } from '../../mocks';
 import { Post } from '../../types/Post';

@@ -1,9 +1,9 @@
 import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType, NextPage } from 'next';
 import { PostForm } from '../../../../components';
-import { Post, PostIdParams } from '../../../../types';
+import { CreateOrUpdatePostRequest, Post, PostIdParams } from '../../../../types';
 import { mockPosts } from '../../../../mocks';
-import { useEffect, useState } from 'react';
-import { getPost, savePost } from '../../../../helpers';
+import { savePost } from '../../../../helpers';
+import { usePost } from '../../../../hooks';
 
 type Result = {
     post: Post;
@@ -36,25 +36,22 @@ export const getStaticPaths: GetStaticPaths<{ postId: string }> = async (context
 type EditPostPageProps = InferGetStaticPropsType<typeof getStaticProps>;
 
 const EditPostPage: NextPage<EditPostPageProps> = ({ post }) => {
-    const [ready, setReady] = useState(false);
-    const [pp, setPP] = useState(post);
+    const { postFromStorage } = usePost(post);
 
-    useEffect(() => {
-        if (typeof window !== 'undefined') { // because windows is not mounted 
-            const p = getPost(post.slug);
-            setPP(p ? p : post);
-            setReady(true);
+    const onUpdatePost = (postUpdated: CreateOrUpdatePostRequest) => {
+
+        // TODO: remove the part to populate the post when integrate the API
+        if (postFromStorage) {
+            const postCreateTemporally: Post = { ...postFromStorage, ...postUpdated };
+            savePost(postCreateTemporally);
         }
-    }, [post]);
-
-    const onEditPost = (postUpdated: Post) => {
-        savePost(postUpdated);
-        console.log({ postUpdated });
     }
 
     return (
         <div className="container">
-            {ready && <PostForm post={pp} onCreatePost={onEditPost} />}
+            {
+                postFromStorage && <PostForm post={postFromStorage} onCreateOrUpdatePost={onUpdatePost} />
+            }
         </div>
     )
 }

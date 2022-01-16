@@ -1,14 +1,10 @@
-import { Post } from '../types/Post';
+import { CreateOrUpdatePostRequest } from '../types';
 
-export const createEmptyPost = (): Post => {
+export const createEmptyPost = (): CreateOrUpdatePostRequest => {
     return {
-        id: '',
+        slug: '',
         title: '',
-        summary: '',
-        content: '',
-        image: {
-            src: '/static/pavo/images/features-icon-1.svg',
-            alt: 'alt'
-        }
+        body: '',
+        excerpt: '',
     }
 }

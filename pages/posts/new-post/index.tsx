@@ -1,20 +1,18 @@
 import { NextPage } from 'next';
 import { PostForm } from '../../../components';
 import { createEmptyPost } from '../../../helpers';
-import { Post } from '../../../types';
+import { CreateOrUpdatePostRequest } from '../../../types';
 
-type NewPostProps = {
-
-}
+type NewPostProps = {}
 
 const NewPostPage: NextPage<NewPostProps> = () => {
     const post = createEmptyPost();
 
-    const onCreatePost = (newPost: Post) => {
+    const onCreatePost = (newPost: CreateOrUpdatePostRequest) => {
         console.log({ newPost });
     }
 
-    return <PostForm post={post} onCreatePost={onCreatePost} />
+    return <PostForm post={post} onCreateOrUpdatePost={onCreatePost} />
 }
 
 export default NewPostPage;

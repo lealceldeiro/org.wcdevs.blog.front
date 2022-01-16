@@ -9,10 +9,6 @@ export const getPost = (postId: string): Post | null => {
 }
 
 export const savePost = (post: Post) => {
-    const foundPost = localStorage.getItem(post.id);
-    if (foundPost) {
-        localStorage.setItem(post.id, JSON.stringify(post));
-    } else {
-        localStorage.setItem(post.id, JSON.stringify(post));
-    }
+    console.log('Post saved', post)
+    localStorage.setItem(post.slug, JSON.stringify(post));
 }

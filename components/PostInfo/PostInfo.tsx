@@ -8,7 +8,7 @@ type PostInfoProps = {
 
 export const PostInfo: React.FC<PostInfoProps> = ({ post }) => {
     return (
-        <div className='container mt-16'>
+        <div className='container mt-24'>
             <Link href={`/posts/${post.slug}/edit-post`}>
                 <a className="rounded mb-5 text-white bg-blue-500 p-2 cursor-pointer hover:bg-blue-800">Edit post</a>
             </Link>

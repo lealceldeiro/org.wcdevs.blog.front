@@ -6,44 +6,39 @@ import { convertFromRaw, convertToRaw, EditorState } from 'draft-js';
 import { EditorProps } from 'react-draft-wysiwyg'
 const Editor = dynamic<EditorProps>(() => import('react-draft-wysiwyg').then(mod => mod.Editor), { ssr: false });
 import draftToHtml from 'draftjs-to-html';
-import { generateRandomId } from '../../helpers';
 import { Post } from '../../types/Post';
 
 import '/node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
+import { CreateOrUpdatePostRequest } from '../../types';
 
 type PostFormProps = {
-  onCreatePost: (newPost: Post) => void;
-  post: Post;
+  onCreateOrUpdatePost: (post: CreateOrUpdatePostRequest) => void;
+  post: Post | CreateOrUpdatePostRequest;
 }
 
 type NewPostData = Pick<Post, 'title'>
 
-export const PostForm: React.FC<PostFormProps> = ({ post, onCreatePost }) => {
+export const PostForm: React.FC<PostFormProps> = ({ post, onCreateOrUpdatePost }) => {
   const router = useRouter();
   const [editorState, setEditorState] = useState(EditorState.createEmpty());
   const { register, handleSubmit, formState: { errors } } = useForm<NewPostData>();
 
-  const isNewPost = post.id === '';
-
   useEffect(() => {
-    if (post.content !== '') {
-      const rawState = convertFromRaw(JSON.parse(post.content));
+    if (post.body !== '') {
+      const rawState = convertFromRaw(JSON.parse(post.body));
       setEditorState(EditorState.createWithContent(rawState))
     }
-  }, [post.content])
+  }, [post])
 
   const onSubmit: SubmitHandler<NewPostData> = (formData) => {
-    const newPost: Post = {
-      id: post.id || generateRandomId(),
+    console.log({ formData })
+    const newPost: CreateOrUpdatePostRequest = {
       title: formData.title,
-      content: JSON.stringify(convertToRaw(editorState.getCurrentContent())),
-      summary: 'You sales force can use the app on any smartphone platform without compatibility issues',
-      image: {
-        src: '/static/pavo/images/features-icon-1.svg',
-        alt: 'alternative'
-      }
+      body: JSON.stringify(convertToRaw(editorState.getCurrentContent())),
+      excerpt: 'Summary of the blog',
     }
-    onCreatePost(newPost);
+
+    onCreateOrUpdatePost(newPost);
   }
 
   const onEditorStateChange = (newEditorState: EditorState) => {
@@ -56,7 +51,7 @@ export const PostForm: React.FC<PostFormProps> = ({ post, onCreatePost }) => {
 
   return (
     <form
-      className='form mt-16 flex flex-col border-1 p-5'
+      className='form mt-24 flex flex-col border-1 p-5'
       onSubmit={handleSubmit(onSubmit)}>
 
       <div className=''>
@@ -86,7 +81,7 @@ export const PostForm: React.FC<PostFormProps> = ({ post, onCreatePost }) => {
       </div>
 
       <div className='mt-5 flex'>
-        <button className='bg-indigo-50 p-1 rounded px-4' type="submit">{isNewPost ? 'Create' : 'Update'}</button>
+        <button className='bg-indigo-50 p-1 rounded px-4' type="submit">{post.slug ? 'Update' : 'Create'}</button>
         <button className='bg-indigo-50 p-1 ml-3 rounded px-4'
           onClick={goBack}
           type="button">

@@ -26,7 +26,7 @@ export const mockPosts: Post[] = [
         title: "5 Things to Know About the this Parameter in JavaScript",
         slug: "1908058f-997c-44d4-b805-9e48d8281b0c",
         excerpt: "It gives access to other properties, it depends on how the function is invoked and more",
-        body: "It gives access to other properties, it depends on how the function is invoked and more",
+        body: '{"blocks":[{"key":"cibd8","text":"This is a test","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}],"entityMap":{}}',
         publishedBy: "Sat Jan 15 2022",
         updatedBy: "Sat Jan 15 2022",
         publishedOn: "Sat Jan 15 2022",
