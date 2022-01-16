@@ -1,5 +1,6 @@
 import { GetStaticProps, InferGetStaticPropsType, NextPage } from 'next';
 import Link from 'next/link';
+import { PostCard2 } from '../../components';
 import { mockPosts } from '../../mocks';
 import { Post } from '../../types/Post';
 
@@ -23,16 +24,14 @@ type BlogsPageProps = InferGetStaticPropsType<typeof getStaticProps>;
 
 const BlogsPage: NextPage<BlogsPageProps> = ({ posts }) => {
   return (
-    <div className='container py-16'>
-      <ul>
-        {posts.map((post) => (
-          <li key={post.slug}>
-            <Link href={`/posts/${encodeURIComponent(post.slug)}`}>
-              <a>{post.title}</a>
-            </Link>
-          </li>
-        ))}
-      </ul>
+    <div className="text-gray-600  mt-24 body-font overflow-hidden">
+      <div className="container px-5 sm:py-24 mx-auto">
+        <div className="flex flex-wrap">
+          {
+            posts.map(post => <PostCard2 key={post.slug} post={post} />)
+          }
+        </div>
+      </div>
     </div>
   )
 }

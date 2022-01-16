@@ -54,3 +54,40 @@ export const PostCard: React.FC<PostCardProps> = ({ post }) => {
         </div>
     )
 }
+
+// TODO: rename and move this component to another place
+export const PostCard2: React.FC<PostCardProps> = ({ post }) => {
+    return (
+        <div className="p-2 md:p-5 lg:p-12 md:w-1/2 lg:w-1/3 flex flex-col items-start">
+            <span className="inline-block py-1 px-2 rounded bg-indigo-50 text-indigo-500 text-xs font-medium tracking-widest">CATEGORY</span>
+            <h2 className="sm:text-3xl text-2xl title-font font-medium text-gray-900 mt-4 mb-4">
+                <Link href={`/posts/${post.slug}`}>
+                    {post.title}
+                </Link>
+            </h2>
+            <p className="leading-relaxed mb-8 text-justify">
+                {post.excerpt}
+            </p>
+            <div className="flex items-center flex-wrap pb-4 mb-4 border-b-2 border-gray-100 mt-auto w-full">
+                <Link href={`/posts/${post.slug}`}>
+                    <a className="text-indigo-500 inline-flex items-center">
+                        <span className="mr-3">Read more</span> <AiOutlineArrowRight />
+                    </a>
+                </Link>
+                <span className="text-gray-400 mr-3 inline-flex items-center ml-auto leading-none text-sm pr-3 py-1 border-r-2 border-gray-200">
+                    <AiOutlineEye size={24} className="mr-3" /> 1.2K
+                </span>
+                <span className="text-gray-400 inline-flex items-center leading-none text-sm">
+                    <AiOutlineComment className="mr-3" size={24} /> {post.commentsCount}
+                </span>
+            </div>
+            <a className="inline-flex items-center">
+                <img alt="avatar" src="https://dummyimage.com/68x68" className="w-12 h-12 rounded-full flex-shrink-0 object-cover object-center" />
+                <span className="flex-grow flex flex-col pl-4">
+                    <span className="title-font font-medium text-gray-900">Holden Caulfield</span>
+                    <span className="text-gray-400 text-xs tracking-widest mt-0.5">UI DEVELOPER</span>
+                </span>
+            </a>
+        </div>
+    )
+}
