@@ -14,11 +14,17 @@ export const PostDetails: React.FC<PostDetailsProps> = ({ post }) => {
             <div className='flex flex-col lg:flex-row h-screen'>
                 <div className='lg:w-4/6'>
                     <h1 className="mb-5 text-2xl lg:text-5xl">{post.title}</h1>
-                    <div
-                        style={{ overflow: 'unset' }}
-                        className="rdw-editor-main"
-                        dangerouslySetInnerHTML={{ __html: draftToHtml(JSON.parse(post.body)) }}>
-                    </div>
+                    {
+
+                        post.body !== '' && (
+
+                            <div
+                                style={{ overflow: 'unset' }}
+                                className="rdw-editor-main"
+                                dangerouslySetInnerHTML={{ __html: draftToHtml(JSON.parse(post.body)) }}>
+                            </div>
+                        )
+                    }
                 </div>
                 <div className="flex-auto">
                     <div className={classes.card_details}>
