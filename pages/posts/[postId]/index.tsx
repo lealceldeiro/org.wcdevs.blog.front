@@ -1,5 +1,5 @@
 import { GetStaticProps, NextPage, InferGetStaticPropsType, GetStaticPaths } from 'next';
-import { PostInfo } from '../../../components';
+import { PostDetails } from '../../../components';
 import { usePost } from '../../../hooks';
 import { mockPosts } from '../../../mocks';
 import { Post, PostIdParams } from '../../../types';
@@ -44,13 +44,7 @@ type PostPageProps = InferGetStaticPropsType<typeof getStaticProps>;
 const PostPage: NextPage<PostPageProps> = ({ post }) => {
   const { postFromStorage } = usePost(post);
 
-  return (
-    <div className='mb-24'>
-      {
-        postFromStorage && <PostInfo post={postFromStorage} />
-      }
-    </div>
-  )
+  return postFromStorage && <PostDetails post={postFromStorage} />
 }
 
 export default PostPage;
