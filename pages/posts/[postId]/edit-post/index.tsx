@@ -16,7 +16,14 @@ type EditPostPageParams = {
 export const getStaticProps: GetStaticProps<Result, EditPostPageParams> = (context) => {
     const postId = context.params?.postId || ''
     const postToEdit = mockPosts.find(item => item.slug === postId) as Post;
-    // TODO: check What to do if the post is not found
+    
+    // FIXME: check how to do this with a middleware to avoid duplicate the same line of code in severals places
+    if (!postToEdit) {
+        return {
+            notFound: true,
+        }
+    }
+
     return {
         props: {
             post: postToEdit

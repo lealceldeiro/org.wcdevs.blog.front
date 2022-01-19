@@ -19,8 +19,12 @@ export const getStaticProps: GetStaticProps<Result, PostPageParams> = async (con
   // const post = await res.json();
   const post = mockPosts.find(item => item.slug === postId);
 
-  // TODO: how to handle this  (post === undefined)
-  // POST not found
+   // FIXME: check how to do this with a middleware to avoid duplicate the same line of code in severals places
+  if (!post) {
+    return {
+      notFound: true,
+    }
+  }
 
   return {
     props: {
