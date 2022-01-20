@@ -11,16 +11,14 @@ type PostDetailsProps = {
 export const PostDetails: React.FC<PostDetailsProps> = ({ post }) => {
     return (
         <div className='mt-20 lg:mt-48 my-24 container sm:px-4 lg:px-8'>
-            <div className='flex flex-col lg:flex-row h-screen'>
+            <div className='flex flex-col lg:flex-row'>
                 <div className='lg:w-4/6'>
                     <h1 className="mb-5 text-2xl lg:text-5xl">{post.title}</h1>
                     {
-
                         post.body !== '' && (
-
                             <div
-                                style={{ overflow: 'unset' }}
-                                className="rdw-editor-main"
+                                // style={{ overflow: 'unset' }}
+                                className="rdw-editor-main text-justify pr-4"
                                 dangerouslySetInnerHTML={{ __html: draftToHtml(JSON.parse(post.body)) }}>
                             </div>
                         )
@@ -72,17 +70,6 @@ export const PostDetails: React.FC<PostDetailsProps> = ({ post }) => {
                     </div>
                 </div>
             </div>
-            {/* <Link href={`/posts/${post.slug}/edit-post`}>
-                <a className="rounded mb-5 text-white bg-blue-500 p-2 cursor-pointer hover:bg-blue-800">Edit post</a>
-            </Link>
-            <div className='mt-16'>
-                <h1 className="mb-5 text-[48px]">{post.title}</h1>
-                <div
-                    style={{ overflow: 'unset' }}
-                    className="rdw-editor-main"
-                    dangerouslySetInnerHTML={{ __html: draftToHtml(JSON.parse(post.body)) }}>
-                </div>
-            </div> */}
         </div>
     )
 }
