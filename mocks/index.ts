@@ -81,17 +81,27 @@ export const mockPosts: Post[] = [
 
 export const mockComments: Comment[] = [
     {
-        anchor: '',
-        body: '',
+        anchor: 'comment_1',
+        body: '{"blocks":[{"key":"92i35","text":"Great content and instructor - unfortunately about 2 years out of date so many parts could not be followed","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}],"entityMap":{}}',
         publishedBy: 'Mark',
-        lastUpdated: 'Tue Jan 15 2022 18:14:08',
+        lastUpdated: 'Tue Jan 01 2022 17:41:08',
         childrenCount: 1
     },
     {
-        anchor: '',
-        body: '',
+        anchor: 'comment_2',
+        body: '{"blocks":[{"key":"92i15","text":"Great ","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}],"entityMap":{}}',
         publishedBy: 'Henry',
-        lastUpdated: 'Tue Jan 16 2022 09:44:50',
+        lastUpdated: 'Tue Jan 21 2022 09:44:50',
         childrenCount: 0
+    }
+]
+
+export const mockCommentsReply: Comment[] = [
+    {
+        anchor: 'comment_1_1',
+        body: '{"blocks":[{"key":"92i53","text":"Playing really loud music, colorful objects","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}],"entityMap":{}}',
+        publishedBy: 'John',
+        lastUpdated: 'Tue Jan 24 2022 17:41:08',
+        childrenCount: 1
     }
 ]
