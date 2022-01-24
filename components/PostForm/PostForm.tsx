@@ -81,8 +81,8 @@ export const PostForm: React.FC<PostFormProps> = ({ post, onCreateOrUpdatePost }
       </div>
 
       <div className='mt-5 flex'>
-        <button className='bg-indigo-50 p-1 rounded px-4' type="submit">{post.slug ? 'Update' : 'Create'}</button>
-        <button className='bg-indigo-50 p-1 ml-3 rounded px-4'
+        <button className='border px-5 py-2 cursor-pointer mr-5 rounded hover:bg-gray-100' type="submit">{post.slug ? 'Update' : 'Create'}</button>
+        <button className='border px-5 py-2 cursor-pointer mr-5 rounded hover:bg-gray-100'
           onClick={goBack}
           type="button">
           Back

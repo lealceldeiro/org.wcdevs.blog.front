@@ -1,7 +1,10 @@
 import draftToHtml from 'draftjs-to-html';
 import Image from 'next/image';
 import Link from 'next/link';
+
 import { Post } from '../../types';
+import { mockComments } from "../../mocks";
+import { CommentsSession } from '../CommentsSession';
 import classes from './PostDetails.module.css';
 
 type PostDetailsProps = {
@@ -12,17 +15,21 @@ export const PostDetails: React.FC<PostDetailsProps> = ({ post }) => {
     return (
         <div className='mt-20 lg:mt-48 my-24 container sm:px-4 lg:px-8'>
             <div className='flex flex-col lg:flex-row'>
-                <div className='lg:w-4/6'>
+                <div className='lg:w-4/6 pr-5'>
                     <h1 className="mb-5 text-2xl lg:text-5xl">{post.title}</h1>
                     {
                         post.body !== '' && (
                             <div
                                 // style={{ overflow: 'unset' }}
-                                className="rdw-editor-main text-justify pr-4"
+                                // className="rdw-editor-main text-justify pr-4"
+                                className="text-justify"
                                 dangerouslySetInnerHTML={{ __html: draftToHtml(JSON.parse(post.body)) }}>
                             </div>
                         )
                     }
+                    <div className=''>
+                        <CommentsSession post={post} comments={mockComments} />
+                    </div>
                 </div>
                 <div className="flex-auto">
                     <div className={classes.card_details}>
@@ -60,9 +67,9 @@ export const PostDetails: React.FC<PostDetailsProps> = ({ post }) => {
                         </div>
                         <div className="flex flex-row justify-between mt-6">
                             <Link href={`/posts/${post.slug}/edit-post`}>
-                                <a className="rounded text-white bg-indigo-500 px-5 py-3 cursor-pointer hover:bg-blue-800">Edit post</a>
+                                <a className="rounded border px-3 py-2 cursor-pointer hover:bg-gray-100">Edit post</a>
                             </Link>
-                            <button className='text-white rounded bg-indigo-500 px-8 py-3'>
+                            <button className='text-white rounded bg-indigo-500 px-3 py-2'>
                                 Follow
                             </button>
                         </div>
