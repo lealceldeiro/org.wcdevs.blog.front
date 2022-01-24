@@ -103,5 +103,12 @@ export const mockCommentsReply: Comment[] = [
         publishedBy: 'John',
         lastUpdated: 'Tue Jan 24 2022 17:41:08',
         childrenCount: 1
+    },
+    {
+        anchor: 'comment_1_2',
+        body: '{"blocks":[{"key":"92i90","text":"2nd reply","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}],"entityMap":{}}',
+        publishedBy: 'Smith',
+        lastUpdated: 'Tue Jan 24 2022 19:11:08',
+        childrenCount: 1
     }
 ]
