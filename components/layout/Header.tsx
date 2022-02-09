@@ -4,13 +4,21 @@ import { useSession, signIn, signOut } from 'next-auth/react';
 
 
 export const Header: React.FC = () => {
-
     const { data: session } = useSession()
     console.log({ session })
 
     const handleLogin = async () => {
         try {
-            const response = await signIn('cognito');
+            const response = await signIn();
+            console.log({ response });
+        } catch (error) {
+            console.log({ error });
+        }
+    }
+
+    const handleLogout = async () => {
+        try {
+            const response = await signOut();
             console.log({ response });
         } catch (error) {
             console.log({ error });
@@ -38,9 +46,9 @@ export const Header: React.FC = () => {
                         {/* <i className="fab fa-apple"></i> */}
                         Login
                     </a>
-                    <a className="btn-solid-lg secondary" href="#your-link">
+                    <a className="btn-solid-lg secondary cursor-pointer" onClick={handleLogout}>
                         {/* <i className="fab fa-google-play"></i> */}
-                        Sign up
+                        logout
                     </a>
                 </div>
                 <div className="xl:text-right align-center my-auto">

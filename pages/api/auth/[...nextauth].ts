@@ -1,17 +1,11 @@
-import type { NextApiRequest, NextApiResponse } from "next"
-import NextAuth from "next-auth"
-import CognitoProvider from 'next-auth/providers/cognito';
+import type { NextApiRequest, NextApiResponse } from 'next';
+import NextAuth from 'next-auth';
+import { getProviders } from '../../../helpers';
 
 export default async function auth(req: NextApiRequest, res: NextApiResponse) {
   // Do whatever you want here, before the request is passed down to `NextAuth`
   return await NextAuth(req, res, {
-    providers: [
-        CognitoProvider({
-            clientId: process.env.COGNITO_CLIENT_ID || '',
-            issuer: process.env.COGNITO_ISSUER,
-            clientSecret: process.env.COGNITO_CLIENT_SECRET || '',
-          })
-    ],
+    providers: getProviders(process.env.NODE_ENV),
     callbacks: {
       async jwt({ token, account }) {
         // Persist the OAuth access_token to the token right after signin
@@ -27,6 +21,6 @@ export default async function auth(req: NextApiRequest, res: NextApiResponse) {
         return session;
       }
     },
-    debug: false,
+    debug: process.env.NODE_ENV !== 'production',
   })
 }
