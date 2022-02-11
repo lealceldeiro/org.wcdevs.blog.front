@@ -5,7 +5,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "test": "jest --watch",
+    "test:ci": "jest --ci"
   },
   "dependencies": {
     "axios": "0.24.0",
@@ -18,18 +20,23 @@
     "react-dom": "17.0.2",
     "react-draft-wysiwyg": "1.14.7",
     "react-hook-form": "7.22.5",
-    "react-icons": "74.3.1"
+    "react-icons": "4.3.1"
   },
   "devDependencies": {
-    "@types/axios": "0.14.0",
+    "@testing-library/jest-dom": "5.16.2",
+    "@testing-library/react": "12.1.2",
+    "@testing-library/user-event": "13.5.0",
     "@types/draftjs-to-html": "0.8.1",
     "@types/html-to-draftjs": "1.4.0",
     "@types/node": "16.11.9",
     "@types/react": "17.0.35",
     "@types/react-draft-wysiwyg": "1.13.4",
     "autoprefixer": "10.4.0",
-    "eslint": "7",
+    "babel-jest": "27.5.1",
+    "eslint": "<8.0.0",
     "eslint-config-next": "12.0.4",
+    "eslint-plugin-testing-library": "^5.0.5",
+    "jest": "27.4.5",
     "postcss": "8.4.5",
     "tailwindcss": "3.0.2",
     "typescript": "4.5.2"
