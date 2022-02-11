@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { getPost } from "../helpers";
-import { Post } from "../types";
+import { Post } from "../types/index";
 
 // TODO: remove this after create mock on data Base
 export const usePost = (data: Post) => {

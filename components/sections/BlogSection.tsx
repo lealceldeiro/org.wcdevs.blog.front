@@ -1,5 +1,5 @@
 import { PostCard } from '../PostCard';
-import { Post } from '../../types';
+import { Post } from '../../types/index';
 
 type Props = {
     posts: Post[];

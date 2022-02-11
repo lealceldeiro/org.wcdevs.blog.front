@@ -2,7 +2,7 @@ import { GetStaticProps, NextPage, InferGetStaticPropsType, GetStaticPaths } fro
 import { PostDetails } from '../../../components';
 import { usePost } from '../../../hooks';
 import { mockPosts } from '../../../mocks';
-import { Post, PostIdParams } from '../../../types';
+import { Post, PostIdParams } from '../../../types/index';
 
 type Result = {
   post: Post;

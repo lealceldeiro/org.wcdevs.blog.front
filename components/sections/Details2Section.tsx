@@ -1,10 +1,16 @@
+import Image from 'next/image';
+
 export const Details2Section: React.FC = () => {
     return (
         <div className="py-24">
             <div className="container px-4 sm:px-8 lg:grid lg:grid-cols-12 lg:gap-x-12">
                 <div className="lg:col-span-7">
                     <div className="mb-12 lg:mb-0 xl:mr-14">
-                        <img className="inline" src="/static/pavo/images/details-2.jpg" alt="alternative" />
+                        <Image
+                            className="inline" src="/static/pavo/images/details-2.jpg" alt="alternative"
+                            width={100}
+                            height={100}
+                        />
                     </div>
                 </div> {/* end of col */}
                 <div className="lg:col-span-5">

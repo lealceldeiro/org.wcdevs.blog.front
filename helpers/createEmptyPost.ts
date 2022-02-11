@@ -1,4 +1,4 @@
-import { CreateOrUpdatePostRequest } from '../types';
+import { CreateOrUpdatePostRequest } from '../types/index';
 
 export const createEmptyPost = (): CreateOrUpdatePostRequest => {
     return {

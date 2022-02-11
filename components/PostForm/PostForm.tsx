@@ -9,7 +9,7 @@ import draftToHtml from 'draftjs-to-html';
 import { Post } from '../../types/Post';
 
 import '/node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
-import { CreateOrUpdatePostRequest } from '../../types';
+import { CreateOrUpdatePostRequest } from '../../types/index';
 
 type PostFormProps = {
   onCreateOrUpdatePost: (post: CreateOrUpdatePostRequest) => void;

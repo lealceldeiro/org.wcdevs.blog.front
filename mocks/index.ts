@@ -1,4 +1,4 @@
-import { Post, Comment } from '../types';
+import { Post, Comment } from '../types/index';
 /**
  * Code to generate the mocks at 
  [

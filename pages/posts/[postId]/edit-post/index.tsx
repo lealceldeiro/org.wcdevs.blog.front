@@ -1,6 +1,6 @@
 import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType, NextPage } from 'next';
 import { PostForm } from '../../../../components';
-import { CreateOrUpdatePostRequest, Post, PostIdParams } from '../../../../types';
+import { CreateOrUpdatePostRequest, Post, PostIdParams } from '../../../../types/index';
 import { mockPosts } from '../../../../mocks';
 import { savePost } from '../../../../helpers';
 import { usePost } from '../../../../hooks';

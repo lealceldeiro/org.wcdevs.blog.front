@@ -5,7 +5,7 @@ export const DetailsLightboxSection: React.FC = () => {
                 <button title="Close (Esc)" type="button" className="mfp-close x-button">×</button>
                 <div className="lg:col-span-8">
                     <div className="mb-12 text-center lg:mb-0 lg:text-left xl:mr-6">
-                        <img className="inline rounded-lg" src="/static/pavo/images/details-lightbox.jpg" alt="alternative" />
+                        {/* <img className="inline rounded-lg" src="/static/pavo/images/details-lightbox.jpg" alt="alternative" /> */}
                     </div>
                 </div> {/* end of col */}
                 <div className="lg:col-span-4">

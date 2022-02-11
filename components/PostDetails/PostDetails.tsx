@@ -2,7 +2,7 @@ import draftToHtml from 'draftjs-to-html';
 import Image from 'next/image';
 import Link from 'next/link';
 
-import { Post } from '../../types';
+import { Post } from '../../types/index';
 import { mockComments } from "../../mocks";
 import { CommentsSession } from '../CommentsSession';
 import classes from './PostDetails.module.css';

@@ -9,7 +9,7 @@ import {
     BlogSection,
 } from '../components/sections';
 import { mockPosts } from '../mocks';
-import { Post } from '../types';
+import { Post } from '../types/Post';
 
 type Result = {
     posts: Post[]

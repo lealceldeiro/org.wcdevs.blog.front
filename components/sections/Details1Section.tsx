@@ -1,3 +1,6 @@
+/* eslint-disable react/no-unescaped-entities */
+import Image from 'next/image';
+
 export const Details1Section: React.FC = () => {
     return (
         <div id="details" className="pt-12 pb-16 lg:pt-16">
@@ -16,7 +19,13 @@ export const Details1Section: React.FC = () => {
                 </div>
                 <div className="lg:col-span-7">
                     <div className="xl:ml-14">
-                        <img className="inline" src="/static/pavo/images/details-1.jpg" alt="alternative" />
+                        <Image
+                            className="inline"
+                            src="/static/pavo/images/details-1.jpg"
+                            alt="alternative"
+                            width={100}
+                            height={100}
+                        />
                     </div>
                 </div>
             </div>

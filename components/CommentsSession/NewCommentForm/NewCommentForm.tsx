@@ -5,7 +5,7 @@ import { EditorProps } from 'react-draft-wysiwyg'
 import { convertFromRaw, convertToRaw, EditorState } from 'draft-js';
 const Editor = dynamic<EditorProps>(() => import('react-draft-wysiwyg').then(mod => mod.Editor), { ssr: false });
 
-import { CreateCommentRequest } from "../../../types";
+import { CreateCommentRequest } from "../../../types/index";
 
 type NewCommentFormProps = {
     onCancel: () => void;

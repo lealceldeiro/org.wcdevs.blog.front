@@ -1,4 +1,10 @@
+/* eslint-disable @next/next/no-css-tags */
+/* eslint-disable @next/next/no-script-in-document */
+// TODO: Remove this line above and the scripts form the document
+// TODO: remove styles form this page
+
 import Document, { Html, Head, Main, NextScript } from 'next/document';
+import Script from 'next/script';
 
 class CustomDocument extends Document {
     render() {
@@ -14,9 +20,9 @@ class CustomDocument extends Document {
                     <a href="body" className="back-to-top page-scroll">Back to Top</a>
                     <Main />
                     <NextScript />
-                    <script src="/static/pavo/js/jquery.min.js"></script>
-                    <script src="/static/pavo/js/jquery.easing.min.js"></script>
-                    <script src="/static/pavo/js/custom.js"></script>
+                    <Script src="/static/pavo/js/jquery.min.js"></Script>
+                    <Script src="/static/pavo/js/jquery.easing.min.js"></Script>
+                    <Script src="/static/pavo/js/custom.js"></Script>
                 </body>
             </Html>
         )

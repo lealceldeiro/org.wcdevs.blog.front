@@ -1,7 +1,7 @@
 import { NextPage } from 'next';
 import { PostForm } from '../../../components';
 import { createEmptyPost } from '../../../helpers';
-import { CreateOrUpdatePostRequest } from '../../../types';
+import { CreateOrUpdatePostRequest } from '../../../types/index';
 
 type NewPostProps = {}
 

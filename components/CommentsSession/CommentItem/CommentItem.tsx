@@ -4,7 +4,7 @@ import { AiOutlineComment, AiOutlineLike } from "react-icons/ai";
 
 import { NewCommentForm } from '../NewCommentForm';
 import { timeAgo } from '../../../helpers';
-import { Comment, CreateCommentRequest } from "../../../types";
+import { Comment, CreateCommentRequest } from "../../../types/index";
 import { useState } from 'react';
 import { CommentList } from '../CommentList';
 

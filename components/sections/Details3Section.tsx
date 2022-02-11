@@ -12,7 +12,7 @@ export const Details3Section: React.FC = () => {
                 </div> {/* end of col */}
                 <div className="lg:col-span-7">
                     <div className="ml-14">
-                        <img className="inline" src="/static/pavo/images/details-3.jpg" alt="alternative" />
+                        {/* <img className="inline" src="/static/pavo/images/details-3.jpg" alt="alternative" /> */}
                     </div>
                 </div> {/* end of col */}
             </div> {/* end of container */}

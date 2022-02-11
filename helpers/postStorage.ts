@@ -1,4 +1,4 @@
-import { Post } from "../types";
+import { Post } from "../types/index";
 
 export const getPost = (postId: string): Post | null => {
     const foundPost = localStorage.getItem(postId);

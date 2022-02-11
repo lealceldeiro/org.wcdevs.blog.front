@@ -7,7 +7,7 @@ import {
     AiOutlineUser
 } from 'react-icons/ai';
 import { BsBookmarkPlus } from 'react-icons/bs';
-import { Post } from '../../types';
+import { Post } from '../../types/index';
 
 type PostCardProps = {
     post: Post;

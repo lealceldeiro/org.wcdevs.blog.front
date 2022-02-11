@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { AiOutlineComment } from "react-icons/ai";
 import { mockCommentsReply } from "../../mocks";
-import { Comment, CreateCommentRequest, Post } from "../../types";
+import { Comment, CreateCommentRequest, Post } from "../../types/index";
 import { CommentList } from "./CommentList";
 import { NewCommentForm } from "./NewCommentForm";
 

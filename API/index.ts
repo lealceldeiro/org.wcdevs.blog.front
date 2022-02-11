@@ -14,7 +14,7 @@ import {
     GetCommentListResponse,
     GetChildCommentsResponse,
     Comment,
-} from '../types';
+} from '../types/index';
 
 // TODO: handle errors with an interceptor
 // https://github.com/axios/axios#interceptors
