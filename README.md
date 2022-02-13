@@ -1,3 +1,9 @@
+# org.wcdevs.blog.front
+
+[![FE Application Deployment](https://github.com/lealceldeiro/org.wcdevs.blog.awsdeployer/actions/workflows/fe-app-deployment.yml/badge.svg)](https://github.com/lealceldeiro/org.wcdevs.blog.awsdeployer/actions/workflows/fe-app-deployment.yml)
+
+Holds `org.wcdevs.blog.front`, the front-end application for [blog.wcdevs.org](https://blog.wcdevs.org)
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
