@@ -1,0 +1,3 @@
+.card_details {
+    @apply shadow bg-white p-5 rounded
+}
