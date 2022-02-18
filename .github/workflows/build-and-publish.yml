@@ -2,42 +2,37 @@ name: Build and Publish
 
 on:
   push:
-    paths:
-      - 'package.json'
-      - 'Dockerfile'
-      - 'src/**'
-      - 'public/**'
-      - '.github/workflows/build-and-publish.yml'
+    paths-ignore:
+      - '**/*.md'
+      - '*.md'
+      - 'LICENSE'
   pull_request:
-    paths:
-      - 'package.json'
-      - 'Dockerfile'
-      - 'src/**'
-      - 'public/**'
-      - '.github/workflows/build-and-publish.yml'
+    paths-ignore:
+      - '**/*.md'
+      - '*.md'
+      - 'LICENSE'
   workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    env:
-      STAGING_INFRA: ${{ secrets.STAGING_INFRA }}
-      PROD_INFRA: ${{ secrets.PROD_INFRA }}
     strategy:
       matrix:
         node-version: [ 12.x ]
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
+      - name: Latest message
+        run: |
+          echo Latest commit: "${{ github.event.head_commit.message }}"
       # https://docs.github.com/en/actions/learn-github-actions/expressions#endswith
       # https://docs.github.com/en/actions/learn-github-actions/workflow-commands-for-github-actions#setting-an-environment-variable
       - name: Set env to staging
-        if: ${{ startsWith(github.ref, '/develop') && endsWith(github.ref, '/develop') && endsWith(env.STAGING_INFRA, 'up') }}
+        if: ${{ endsWith(github.ref, '/develop') && !endsWith(github.event.head_commit.message, 'no-deploy') }}
         run: |
           echo "DEPLOY_ENV=staging" >> $GITHUB_ENV
-
       - name: Set env to prod
-        if: ${{ startsWith(github.ref, '/main') && endsWith(github.ref, '/main') && endsWith(env.PROD_INFRA, 'up') }}
+        if: ${{ endsWith(github.ref, '/main') && !endsWith(github.event.head_commit.message, 'no-deploy') }}
         run: |
           echo "DEPLOY_ENV=prod" >> $GITHUB_ENV
 
@@ -48,14 +43,13 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node-version }}
-          cache: 'npm'
+          cache: 'yarn'
 
-      - name: Install dependencies with a clean slate
-        run: npm ci
+      - name: Install dependencies
+        run: yarn install
 
       - name: Run test
-        # FIXME: restore actual npm command
-        run: npm -v
+        run: yarn test:ci
 
       - name: Create Docker image tag
         if: ${{ env.DEPLOY_ENV == 'staging' || env.DEPLOY_ENV == 'prod' }}
