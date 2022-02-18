@@ -53,6 +53,6 @@ done
 
 # verify project
 set -ex
-yarn test:ci
+npm run test:ci
 
 exit 0
