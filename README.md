@@ -6,6 +6,11 @@ Holds `org.wcdevs.blog.front`, the front-end application for [blog.wcdevs.org](h
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+## Contributing
+
+Before start contributing to this project be sure you're familiar with our
+[Contribution guidelines](CONTRIBUTING.md) and our [Code of Conduct](CODE_OF_CONDUCT.md).
+
 ## Getting Started
 
 First, run the development server:
