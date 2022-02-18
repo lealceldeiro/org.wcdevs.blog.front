@@ -8,7 +8,7 @@
 
 MSG="$1"
 
-if ! grep -qP '^(build|ci|chore|docs|feat|fix|perf|refactor|revert|style|test)(\((US-)?[0-9]++\))?\:.*' "$MSG";then
+if ! grep -qP '^(build|ci|chore|docs|feat|fix|perf|refactor|revert|style|test)(\((US-)?(#)?[0-9]++\))?\:.*' "$MSG";then
   echo "Commit message does not follow our convention"
   exit 1
 fi
