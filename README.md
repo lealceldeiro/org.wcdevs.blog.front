@@ -1,10 +1,17 @@
 # org.wcdevs.blog.front
 
+[![License: Apache](https://img.shields.io/badge/License-Apache%202.0-blue)](https://opensource.org/licenses/Apache-2.0)
+[![Build and Publish](https://github.com/lealceldeiro/org.wcdevs.blog.front/actions/workflows/build-and-publish.yml/badge.svg)](https://github.com/lealceldeiro/org.wcdevs.blog.front/actions/workflows/build-and-publish.yml)
 [![FE Application Deployment](https://github.com/lealceldeiro/org.wcdevs.blog.awsdeployer/actions/workflows/fe-app-deployment.yml/badge.svg)](https://github.com/lealceldeiro/org.wcdevs.blog.awsdeployer/actions/workflows/fe-app-deployment.yml)
 
 Holds `org.wcdevs.blog.front`, the front-end application for [blog.wcdevs.org](https://blog.wcdevs.org)
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+
+## Contributing
+
+Before start contributing to this project be sure you're familiar with our
+[Contribution guidelines](CONTRIBUTING.md) and our [Code of Conduct](CODE_OF_CONDUCT.md).
 
 ## Getting Started
 

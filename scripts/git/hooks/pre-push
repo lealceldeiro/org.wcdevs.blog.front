@@ -42,7 +42,7 @@ do
 
         echo "Check for incorrect commit messages before pushing in range $range"
         # https://git-scm.com/docs/git-rev-list
-        commit=$(git rev-list -n 1 --invert-grep --perl-regexp --grep '^(build|ci|chore|docs|feat|fix|perf|refactor|revert|style|test)(\((US-)?[0-9]++\))?\:.*' "$range")
+        commit=$(git rev-list -n 1 --invert-grep --perl-regexp --grep '^(build|ci|chore|docs|feat|fix|perf|refactor|revert|style|test)(\((US-)?(#)?[0-9]++\))?\:.*' "$range")
         if test -n "$commit"
         then
         echo >&2 "Found a commit ($commit) message that does not follow our convention in $local_ref, not pushing"
@@ -50,5 +50,9 @@ do
         fi
     fi
 done
+
+# verify project
+set -ex
+npm run test:ci
 
 exit 0
