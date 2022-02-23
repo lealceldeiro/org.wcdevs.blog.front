@@ -3,8 +3,9 @@ FROM node:12-alpine
 WORKDIR /wcdevs_front
 
 COPY package.json .
-RUN npm install
+RUN yarn
+RUN yarn build
 
 COPY . .
 
-CMD ["npm", "start"]
+CMD ["yarn", "start"]

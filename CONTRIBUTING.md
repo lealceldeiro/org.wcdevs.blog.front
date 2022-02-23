@@ -117,27 +117,20 @@ request can be ultimately accepted.
 
 ### Git flow
 
-#### Branch names
+#### Branch names and commit messages convention
 
-Branch names should start with one of the following, depending on what the intention is:
+Branch names should follow the following pattern:
 
-- `fix` for but fixes
-- `feature` for a new feature implementation
-- `enhancement` for an enhancement implementation
-
-After one of the previous prefix add a slash (`/`) and the issue number which causes the changes to
-be implemented. Lastly, add a short description of the intended change. Examples:
-
-- `fix/104-check-for-token-validity-in-security-config`
-- `feature/284-implement-user-details-endpoint`
-- `enahancement/734-improve-custom-claims-retrieval-from-auth-token`
-
-#### Commit messages convention
+```text
+<type>/<ITEM ID>?-brief-subject-separated-with-dashes
+```
 
 To have a consistent git history the commit messages should follow the following pattern:
+
 ```text
-<type>(<ITEM ID>?): <subject>
+<type>(US-?#?<ITEM ID>?): <subject>
 ```
+
 ##### `<type>` should be one of:
 
 - `build`: Changes that affect the build system or external dependencies (example scopes: yarn)
@@ -152,11 +145,13 @@ To have a consistent git history the commit messages should follow the following
 - `style`: Changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc.)
 - `test`: Adding missing tests or correcting existing tests
 
-#### `<ITEM ID>` -- The related issue, user story or defect
+#### `<ITEM ID>` -- Optional, the related issue, user story or defect
+
+It can be preceded by `#`, example `feat(#237): User subscription`
 
 - For user stories, you should use `US-` as prefix. i.e.: `feat(US-237): User subscription`
 - For non-related issues or defects you should leave it blank. i.e:
-`refactor: Improve code style in SecurityConfig class`
+  `refactor: Improve code style in SecurityConfig class`
 
 #### `<subject>`
 
@@ -183,3 +178,8 @@ and [chmod-invocation](http://www.gnu.org/software/coreutils/chmod).
 These are not hard rules, but rather best practices, so, if you enable these git hooks in your local
 copy of the project, and later you need to bypass any of them, you can use the `--no-verify` option
 (although it's highly discouraged to do so) -- example: `git push --no-verify`.
+
+#### Skip deployments
+
+- If the commit message specified when merging to `develop` or `main` branch ends with `no-deploy`,
+  the deployment to AWS infrastructure will be skipped.

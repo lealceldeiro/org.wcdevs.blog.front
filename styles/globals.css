@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+p:empty {
+  height: 15px;
+}
+
+pre {
+  margin: 1em 0;
+}
+
+ul {
+  list-style-type: disc;
+  padding-left: 15px;
+}
+
+ul > li {
+  margin: 1em 0;
+}
+
+ol {
+  list-style: auto;
+  padding-left: 15px;
+} 
