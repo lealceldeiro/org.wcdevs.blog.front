@@ -16,6 +16,9 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      STAGING_INFRA: ${{ secrets.STAGING_INFRA }}
+      PROD_INFRA: ${{ secrets.PROD_INFRA }}
     strategy:
       matrix:
         node-version: [ 12.x ]

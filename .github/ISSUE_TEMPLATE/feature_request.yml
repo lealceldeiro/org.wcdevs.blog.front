@@ -1,0 +1,35 @@
+name: Feature Request
+description: Request a new feature
+title: "[Feature Request] "
+labels: ["feature"]
+assignees:
+  - YuryDG
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to help us improve our site!
+  - type: input
+    id: contact
+    attributes:
+      label: Contact Details
+      description: How can we get in touch with you if we need more info?
+      placeholder: (optional) ex. email@example.com
+    validations:
+      required: false
+  - type: textarea
+    id: what-is-needed
+    attributes:
+      label: What new feature you'd like to see in our site?
+      description: Describe as much as possible the new feature you'd like to see included in our site.
+      placeholder: Tell us what you think is missing in our site and we'll try to implement it
+    validations:
+      required: true
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Code of Conduct
+      description: By submitting this issue, you agree to follow our [Code of Conduct](https://github.com/lealceldeiro/org.wcdevs.blog.front/blob/main/CODE_OF_CONDUCT.md)
+      options:
+        - label: I agree to follow this project's Code of Conduct
+          required: true
