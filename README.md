@@ -4,16 +4,37 @@
 [![Build and Publish](https://github.com/lealceldeiro/org.wcdevs.blog.front/actions/workflows/build-and-publish.yml/badge.svg)](https://github.com/lealceldeiro/org.wcdevs.blog.front/actions/workflows/build-and-publish.yml)
 [![FE Application Deployment](https://github.com/lealceldeiro/org.wcdevs.blog.awsdeployer/actions/workflows/fe-app-deployment.yml/badge.svg)](https://github.com/lealceldeiro/org.wcdevs.blog.awsdeployer/actions/workflows/fe-app-deployment.yml)
 
+We are happy you're here!
+
 Holds `org.wcdevs.blog.front`, the front-end application for [blog.wcdevs.org](https://blog.wcdevs.org)
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Requirements
+- [Nodejs](https://nodejs.org/en/) (version 12 LTS or above)
+- [Docker](https://www.docker.com/)
+- [Docker compose](https://docs.docker.com/compose/install/)
+# Setup
 
-## Contributing
+## Frontend
+We use [nvm](https://github.com/nvm-sh/nvm) to manage node versions. 
 
-Before start contributing to this project be sure you're familiar with our
-[Contribution guidelines](CONTRIBUTING.md) and our [Code of Conduct](CODE_OF_CONDUCT.md).
+To run the project with the proper node version run the command
+```bash
+nvm use
+```
+to use the selected version we specified on the `.nvmrc` config file  for this project (`v16.13.1`)
 
-## Getting Started
+Install the dependencies using `npm` or `yarn`.
+```bash
+npm i -g yarn # if you prefer yarn
+# and then run
+yarn
+# or 
+npm install
+```
+## Backend
+API was development with [Java](https://www.java.com/en/). To run it locally, follow the instruction [here](https://github.com/lealceldeiro/org.wcdevs.blog.core#running-the-api-whole-stack-with-docker-compose)
+# Getting Started
 
 First, run the development server:
 
@@ -25,23 +46,27 @@ yarn dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+# Contributing
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+Before start contributing to this project be sure you're familiar with our
+[Contribution guidelines](CONTRIBUTING.md) and our [Code of Conduct](CODE_OF_CONDUCT.md).
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+# Continuous Integration
+We use [GitHub Actions](https://github.com/features/actions) for continuous integration. Check out our [build workflows](https://github.com/lealceldeiro/org.wcdevs.blog.front/actions).
 
-## Learn More
+# Changelog
+See the [CHANGELOG](https://github.com/lealceldeiro/org.wcdevs.blog.front/releases) for details.
 
-To learn more about Next.js, take a look at the following resources:
+# Authors
+This project exists thanks to all the people who contribute — [contribute](CONTRIBUTING.md).
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Contributors
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+<a href = "https://github.com/lealceldeiro/org.wcdevs.blog.front/graphs/contributors">
+  <img src = "https://contrib.rocks/image?repo=lealceldeiro/org.wcdevs.blog.front"/>
+</a>
 
-## Deploy on Vercel
+Made with [contributors-img](https://contrib.rocks).
+# License
+This project is licensed under the [Apache License](https://www.apache.org/licenses/LICENSE-2.0) - see the [LICENSE](LICENSE) file for details.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
