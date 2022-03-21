@@ -2,10 +2,8 @@ FROM node:12-alpine
 
 WORKDIR /wcdevs_front
 
-COPY package.json .
+COPY . .
 RUN yarn
 RUN yarn build
-
-COPY . .
 
 CMD ["yarn", "start"]
