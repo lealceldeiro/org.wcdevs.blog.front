@@ -19,9 +19,9 @@ export const getProviders = (environment: string): Provider[] => {
                 issuer: process.env.KEYCLOAK_ISSUER,
             }),
             CognitoProvider({
-                clientId: '1obaprb6566jf16qft92brm29j',
-                issuer: 'https://cognito-idp.eu-west-3.amazonaws.com/eu-west-3_hp4aOWuAe',
-                clientSecret:'18qui6rpnlnkvqui8g201s1c916v8i0pdicid1otndblefcm0fn4',
+                clientId: '1o8to1egjuvk6q1puvr5s2meo0',
+                issuer: 'https://cognito-idp.eu-west-3.amazonaws.com/eu-west-3_IninyXiqR',
+                clientSecret: '1fueq4ouadsnccdcld1o73vjfpqoamb8le05hlg7jmtor8j77ia'
             })
         ];
     } else { // test environment 
