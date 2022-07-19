@@ -1,4 +1,4 @@
-name: Build and Publish
+name: Build and Deploy
 
 on:
   push:
@@ -13,28 +13,38 @@ on:
       - 'LICENSE'
   workflow_dispatch:
 
+env:
+  AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+  AWS_ACCOUNT_ID: ${{ secrets.AWS_ACCOUNT_ID }}
+  AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
+  APP_NAME: ${{ secrets.APP_NAME }}
+  ECR_REPO_NAME: ${{ secrets.APP_NAME }}${{ secrets.ECR_REPO_NAME }}
+
 jobs:
   build:
-    runs-on: ubuntu-latest
-    env:
-      STAGING_INFRA: ${{ secrets.STAGING_INFRA }}
-      PROD_INFRA: ${{ secrets.PROD_INFRA }}
+    name: Build
+
+    outputs:
+      environment: ${{ steps.environment.outputs.deployEnv }}
+      dockerImageTag: ${{ steps.dockerImageTag.outputs.tag }}
+
     strategy:
       matrix:
         node-version: [ 12.x ]
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
+    runs-on: ubuntu-latest
     steps:
-      - name: Latest message
+      - name: Commit message
         run: |
           echo Latest commit: "${{ github.event.head_commit.message }}"
-      # https://docs.github.com/en/actions/learn-github-actions/expressions#endswith
-      # https://docs.github.com/en/actions/learn-github-actions/workflow-commands-for-github-actions#setting-an-environment-variable
-      - name: Set env to staging
+
+      - name: Staging
         if: ${{ endsWith(github.ref, '/develop') && !endsWith(github.event.head_commit.message, 'no-deploy') }}
         run: |
           echo "DEPLOY_ENV=staging" >> $GITHUB_ENV
-      - name: Set env to prod
+      - name: Production
         if: ${{ endsWith(github.ref, '/main') && !endsWith(github.event.head_commit.message, 'no-deploy') }}
         run: |
           echo "DEPLOY_ENV=prod" >> $GITHUB_ENV
@@ -54,20 +64,15 @@ jobs:
       - name: Run test
         run: yarn test:ci
 
-      - name: Create Docker image tag
+      - name: Create Docker Image Tag
         if: ${{ env.DEPLOY_ENV == 'staging' || env.DEPLOY_ENV == 'prod' }}
         id: dockerImageTag
         run: echo "::set-output name=tag::${DEPLOY_ENV}-$(date +'%Y%m%d%H%M%S')-${GITHUB_SHA}"
 
-      - name: Publish Docker image to ECR registry
+      - name: Publish Docker image to ECR
         if: ${{ env.DEPLOY_ENV == 'staging' || env.DEPLOY_ENV == 'prod' }}
         env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_ACCOUNT_ID: ${{ secrets.AWS_ACCOUNT_ID }}
-          AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
           DOCKER_IMAGE_TAG: ${{ steps.dockerImageTag.outputs.tag }}
-          ECR_REPO_NAME: ${{ secrets.ECR_REPO_NAME }}
         run: |
           echo OS Information:
           lsb_release -sidrc
@@ -81,19 +86,54 @@ jobs:
           docker tag orgwcdevsblogfront ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${ECR_REPO_NAME}:${DOCKER_IMAGE_TAG}
           docker push ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${ECR_REPO_NAME}:${DOCKER_IMAGE_TAG}
 
-      - name: Send Deployment event to queue
-        if: ${{ env.DEPLOY_ENV == 'staging' || env.DEPLOY_ENV == 'prod' }}
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_ACCOUNT_ID: ${{ secrets.AWS_ACCOUNT_ID }}
-          AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
-          DOCKER_IMAGE_TAG: ${{ steps.dockerImageTag.outputs.tag }}
-          # see https://github.com/lealceldeiro/org.wcdevs.blog.awsdeployer/blob/main/deployment-sequencer-lambda/src/index.ts#L65
+  deploy:
+    name: Deploy to ECS
+
+    needs: build
+    timeout-minutes: 25
+    concurrency: build-and-deploy-front-app
+
+    runs-on: ubuntu-latest
+    steps:
+      - name: Fetch vars from Build job
         run: |
-          export EVENT_PAYLOAD="{\"commitSha\": \"$GITHUB_SHA\", \"ref\": \"main\", \"owner\": \"lealceldeiro\", \"repo\": \"org.wcdevs.blog.awsdeployer\", \"workflowId\": \"fe-app-deployment.yml\", \"environmentName\": \"$DEPLOY_ENV\", \"applicationName\": \"front\", \"dockerImageTag\": \"$DOCKER_IMAGE_TAG\"}"
-          aws sqs send-message \
-            --queue-url=https://sqs.${AWS_DEFAULT_REGION}.amazonaws.com/${AWS_ACCOUNT_ID}/$DEPLOY_ENV-front-depQueue.fifo \
-            --message-group-id default \
-            --message-deduplication-id $GITHUB_SHA \
-            --message-body "$EVENT_PAYLOAD"
+          echo "DEPLOY_ENV=${{ needs.build.outputs.environment }}" >> $GITHUB_ENV
+          echo "DOCKER_IMAGE=${{ needs.build.outputs.dockerImageTag }}" >> $GITHUB_ENV
+
+      - name: Checkout
+        if: ${{ env.DEPLOY_ENV == 'staging' || env.DEPLOY_ENV == 'prod' }}
+        uses: actions/checkout@v3
+
+      - name: Install CDK
+        if: ${{ env.DEPLOY_ENV == 'staging' || env.DEPLOY_ENV == 'prod' }}
+        run: |
+          echo "Node version:"
+          node -v
+          echo "npm version:"
+          npm -v
+          npm i -g aws-cdk
+          echo "CDK version:"
+          cdk version
+
+      - name: NPM install
+        if: ${{ env.DEPLOY_ENV == 'staging' || env.DEPLOY_ENV == 'prod' }}
+        working-directory: awsdeployerfe
+        run: npm i
+
+      - name: Deploy ECS Stack
+        if: ${{ env.DEPLOY_ENV == 'staging' || env.DEPLOY_ENV == 'prod' }}
+        working-directory: awsdeployerfe
+        run: |
+          npm run service:deploy:fe -- \
+            -c accountId=${{ secrets.AWS_ACCOUNT_ID }} \
+            -c region=${{ secrets.AWS_DEFAULT_REGION }} \
+            -c environmentName=${{ env.DEPLOY_ENV }} \
+            -c applicationName=${{ env.APP_NAME }} \
+            -c dockerRepositoryName=${{ env.ECR_REPO_NAME }} \
+            -c dockerImageTag=${{ env.DOCKER_IMAGE }}
+
+      - name: AWS Clean Up
+        if: ${{ env.DEPLOY_ENV == 'staging' || env.DEPLOY_ENV == 'prod' }}
+        run: |
+          aws cloudformation describe-stacks --region ${{ secrets.AWS_DEFAULT_REGION }} --query "Stacks[].StackName" --output text | sed -e "s/\s\+/\n/g" | grep -e "${{ env.DEPLOY_ENV }}-${{ env.APP_NAME }}-parameters-fe-service-stack-.*" | sort -r | tail -n+2 > stacks_to_delete.txt
+          for stack in $(cat stacks_to_delete.txt); do aws cloudformation delete-stack --stack-name $stack --region ${{ secrets.AWS_DEFAULT_REGION }};  done
