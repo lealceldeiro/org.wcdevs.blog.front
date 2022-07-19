@@ -3,6 +3,7 @@
 - [ ] Bug fix (non-breaking change which fixes an issue)
 - [ ] New feature (non-breaking change which adds functionality)
 - [ ] Breaking change (fix or feature that would cause existing functionality to change)
+- [ ] Other non-breaking change (enhancement, tests, documentation, chore and the like)
 
 ## And
 - [ ] This Pull Request DOES NOT target the `main` branch on this repository (if so it must point to `develop`).

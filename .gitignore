@@ -31,6 +31,8 @@ hs_err_pid*
 *.scss.map
 
 # dependencies
+/awsdeployerfe/node_modules
+/awsdeployerfe/target
 /node_modules
 /.pnp
 .pnp.js

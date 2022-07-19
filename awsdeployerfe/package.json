@@ -1,0 +1,12 @@
+{
+  "name": "org.wcdevs.blog.awsdeployerfe",
+  "version": "0.0.1",
+  "private": true,
+  "devDependencies": {
+    "aws-cdk": "2.31.1"
+  },
+  "scripts": {
+    "service:deploy:fe": "cdk deploy --app \"./mvnw -e -q compile exec:java -Dexec.mainClass=org.wcdevs.blog.awsdeployerfe.EcsDeployer\" --require-approval never --all",
+    "service:destroy:fe": "cdk destroy --app \"./mvnw -e -q compile exec:java -Dexec.mainClass=org.wcdevs.blog.awsdeployerfe.EcsDeployer\" --force --require-approval never --all"
+  }
+}
