@@ -2,7 +2,6 @@
 
 [![License: Apache](https://img.shields.io/badge/License-Apache%202.0-blue)](https://opensource.org/licenses/Apache-2.0)
 [![Build and Publish](https://github.com/lealceldeiro/org.wcdevs.blog.front/actions/workflows/build-and-publish.yml/badge.svg)](https://github.com/lealceldeiro/org.wcdevs.blog.front/actions/workflows/build-and-publish.yml)
-[![FE Application Deployment](https://github.com/lealceldeiro/org.wcdevs.blog.awsdeployer/actions/workflows/fe-app-deployment.yml/badge.svg)](https://github.com/lealceldeiro/org.wcdevs.blog.awsdeployer/actions/workflows/fe-app-deployment.yml)
 
 We are happy you're here!
 
